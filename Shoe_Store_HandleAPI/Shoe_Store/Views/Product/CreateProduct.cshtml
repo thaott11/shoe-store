@@ -7,8 +7,8 @@
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-end">
-                        <li class="breadcrumb-item"><a>Product</a></li>
-                        <li class="breadcrumb-item"><a href="#">Create Product</a></li>
+                        <li class="breadcrumb-item"><a asp-action="ProductList">Product List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Create Product</li>
                     </ol>
                 </div>
             </div>
@@ -22,59 +22,123 @@
                         <div class="card-header">
                             <h3 class="card-title">Create Product</h3>
                         </div>
-                        <form id="quickForm" method="POST" enctype="multipart/form-data">
+                        <form asp-action="CreateProduct" id="quickForm" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_csrf" value="0ace75f6f369acecb7a4be5c1c0c6fe04ec876aa432aa658">
-                            <div class="row">
-                                <div class="card-body col-lg-8">
+                            <input type="hidden" name="Id" value="0" />
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="card-body col-lg-8">
+                                        <div class="row">
+                                            <div class="form-group col-lg-6">
+                                                <label for="productName">Product Name</label>
+                                                <input type="text" name="ProductName" class="form-control" id="productName" placeholder="Enter product name" required minlength="2" maxlength="50">
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="price">Price</label>
+                                                <input type="number" step="0.01" name="Price" class="form-control" id="price" placeholder="Enter price" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <textarea class="form-control" rows="3" name="Description" id="description" placeholder="Enter description" required minlength="2" maxlength="500"></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-lg-6">
+                                                <label for="quantity">Quantity</label>
+                                                <input type="number" name="Quantity" class="form-control" id="quantity" placeholder="Enter quantity" required min="0">
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label for="color">Color</label>
+                                                <input type="text" name="Color" class="form-control" id="color" placeholder="Enter color">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Product Categories</label>
+                                            <div>
+                                                @if (ViewBag.Categories != null && ViewBag.Categories.Count > 0)
+                                                {
+                                                    foreach (var category in ViewBag.Categories)
+                                                    {
+                                                        <div style="display: inline-block; margin-right: 20px;">
+                                                            <input class="form-check-input" type="checkbox" name="category" value="@category.Id" id="category_@category.Id">
+                                                            <label class="form-check-label" for="category_@category.Id">@category.NameCategory</label>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <p>No categories available.</p>
+                                                }
+                                            </div>
+                                        </div>
+                                        <!-- Product Sizes -->
+                                        <div class="form-group card-body col-lg-4">
+                                            <label>Product Sizes</label>
+                                            <div>
+                                                @if (ViewBag.ProductSizes != null)
+                                                {
+                                                    foreach (var size in ViewBag.ProductSizes)
+                                                    {
+                                                        <div style="display: inline-block; margin-right: 20px;">
+                                                            <input class="form-check-input" type="checkbox" name="productsize" value="@size.SizeId" id="size_@size.SizeId">
+                                                            <label class="form-check-label" for="size_@size.SizeId">@size.Size</label>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <p>No product sizes available.</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+
+
+
+                                    <div class="card-body col-lg-4">
+                                        <div class="image-container position-relative">
+                                            <img id="imagePreview" class="image-preview img-fluid"
+                                                 src="@Url.Content("~/Image/null-image.png")" alt="Image Preview"
+                                                 style="max-width: 150px; max-height: 150px; object-fit: contain;">
+                                            <label for="thumbnail" class="camera-icon position-absolute">
+                                                <i class="fas fa-camera"></i>
+                                            </label>
+                                            <label class="remove-image" style="display:none; cursor:pointer;">
+                                                <i class="fas fa-times"></i>
+                                            </label>
+                                            <input type="file" id="thumbnail" name="ImageFile" style="display: none;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body col-lg-12">
+                                    <label for="additionalImages" style="display: block;">Product Details Images</label>
                                     <div class="row">
-                                        <div class="form-group col-lg-6">
-                                            <label for="productName">Product Name</label>
-                                            <input type="text" name="ProductName" class="form-control" id="productName" placeholder="Enter product name" required minlength="2" maxlength="50">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label for="price">Price</label>
-                                            <input type="number" step="0.01" name="Price" class="form-control" id="price" placeholder="Enter price" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <textarea class="form-control" rows="3" name="Description" id="description" placeholder="Enter description" required minlength="2" maxlength="500"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-6">
-                                            <label for="quantity">Quantity</label>
-                                            <input type="number" name="Quantity" class="form-control" id="quantity" placeholder="Enter quantity" required min="0">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label for="color">Color</label>
-                                            <input type="text" name="Color" class="form-control" id="color" placeholder="Enter color">
-                                        </div>
+                                        @for (int i = 0; i < 5; i++)
+                                        {
+                                            <div class="col-lg-2">
+                                                <div class="image-container position-relative">
+                                                    <img id="imagePreviewDetail_@i" class="image-preview img-fluid"
+                                                         src="@Url.Content("~/Image/null-image.png")" alt="Detail Image Preview"
+                                                         style="max-width: 80px; max-height: 80px; object-fit: contain;">
+                                                    <label for="thumbnailDetail_@i" id="cameraIconDetail_@i" class="camera-icon position-absolute">
+                                                        <i class="fas fa-camera"></i>
+                                                    </label>
+                                                    <label id="removeImageDetail_@i" class="remove-image" style="display:none; cursor:pointer;">
+                                                        <i class="fas fa-times"></i>
+                                                    </label>
+                                                    <input type="file" id="thumbnailDetail_@i" name="imageFiles" style="display: none;">
+                                                </div>
+                                            </div>
+                                        }
+
                                     </div>
                                 </div>
-                                <div class="card-body col-lg-4">
-                                    <div class="image-container position-relative">
-                                        <img id="imagePreview" class="image-preview img-fluid"
-                                             src="~/Image/null-image.png" alt="Image Preview"
-                                             style="max-width: 150px; max-height: 150px; object-fit: contain;">
-                                        <label for="thumbnail" class="camera-icon position-absolute">
-                                            <i class="fas fa-camera"></i>
-                                        </label>
-                                        <label class="remove-image" style="display:none; cursor:pointer;">
-                                            <i class="fas fa-times"></i>
-                                        </label>
-                                        <input type="file" id="thumbnail" name="ImageFile" style="display: none;">
-                                    </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
-
-                                <div class="card-body col-lg-8">
-                                    <label for="additionalImages" style="display: block;">Product Detail</label>
-                                    <input type="file" id="additionalImages" name="imageFiles" multiple style="display: block; margin-top: 10px;">
-                                </div>
-
-
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -85,6 +149,7 @@
 </div>
 
 <script>
+    // JavaScript to handle main image selection/dismissal
     const thumbnailInput = document.getElementById('thumbnail');
     const imagePreview = document.getElementById('imagePreview');
     const removeImage = document.querySelector('.remove-image');
@@ -97,19 +162,48 @@
             reader.onload = function (event) {
                 imagePreview.src = event.target.result;
                 imagePreview.style.display = 'block';
-                removeImage.style.display = 'block'; 
-                cameraIcon.style.display = 'none'; 
+                removeImage.style.display = 'block';
+                cameraIcon.style.display = 'none';
             };
             reader.readAsDataURL(file);
         }
     });
 
     removeImage.addEventListener('click', function () {
-        thumbnailInput.value = ''; 
+        thumbnailInput.value = '';
         imagePreview.src = '@Url.Content("~/Image/null-image.png")';
-        removeImage.style.display = 'none'; 
-        cameraIcon.style.display = 'block'; 
+        removeImage.style.display = 'none';
+        cameraIcon.style.display = 'block';
     });
+
+    // JavaScript to handle detail images
+    for (let i = 0; i < 5; i++) {
+        const thumbnailDetailInput = document.getElementById('thumbnailDetail_' + i);
+        const imagePreviewDetail = document.getElementById('imagePreviewDetail_' + i);
+        const removeImageDetail = document.querySelector(`#removeImageDetail_${i}`);
+        const cameraIconDetail = document.querySelector(`#cameraIconDetail_${i}`);
+
+        thumbnailDetailInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    imagePreviewDetail.src = event.target.result;
+                    removeImageDetail.style.display = 'block';
+                    cameraIconDetail.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        removeImageDetail.addEventListener('click', function () {
+            thumbnailDetailInput.value = '';
+            imagePreviewDetail.src = '@Url.Content("~/Image/null-image.png")';
+            removeImageDetail.style.display = 'none';
+            cameraIconDetail.style.display = 'block';
+        });
+    }
+
 
 </script>
 
@@ -121,7 +215,7 @@
         align-items: center;
         height: 150px;
         width: 150px;
-        margin: 0 auto; /* Căn giữa khung hình ảnh */
+        margin: 0 auto;
     }
 
     .image-preview {
@@ -145,29 +239,19 @@
         }
 
     .remove-image {
-        display: none; /* Ẩn dấu "X" ban đầu */
+        display: none;
     }
 
-    /* Chỉ căn giữa khối chứa hình ảnh mà không ảnh hưởng tới các phần khác */
-    .image-wrapper {
+    .card-body .row {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-top: 20px;
+        justify-content: space-between;
     }
 
-    /* Đảm bảo form có bố cục thông thường */
-    .card-body {
-        padding: 20px;
+    .card-body .form-group {
+        margin-bottom: 15px;
     }
 
-        .card-body .row {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .card-body .form-group {
-            margin-bottom: 15px;
-        }
+    .card-body .col-lg-2 {
+        padding: 10px;
+    }
 </style>

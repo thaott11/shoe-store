@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PagedList;
-using Shoe_Store.Models;
+using Data.Models;
 using System.Net.Http.Headers;
 
 namespace Shoe_Store.Controllers

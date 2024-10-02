@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
-using Shoe_Store_HandleAPI.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Shoe_Store_HandleAPI.Controllers
@@ -24,9 +26,22 @@ namespace Shoe_Store_HandleAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
         {
-            var products = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).ToListAsync();
-            return Ok(products);
+            var products = await _db.Products
+                .Include(p => p.ImageDetails)
+                .Include(p => p.Categories)
+                .Include(p => p.productSizes)
+                .ToListAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+
+            var json = JsonSerializer.Serialize(products, options);
+            return Ok(json);
         }
+
 
 
         [HttpPost]
@@ -40,7 +55,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 
             if (product.ImageFile != null && product.ImageFile.Length > 0)
             {
-                product.Image = await SaveImageFile(product.ImageFile, "images"); 
+                product.Image = await SaveImageFile(product.ImageFile, "images");
             }
 
             // thêm categories với product
@@ -63,7 +78,7 @@ namespace Shoe_Store_HandleAPI.Controllers
                 }
             }
             await _db.Products.AddAsync(product);
-            await _db.SaveChangesAsync(); 
+            await _db.SaveChangesAsync();
 
             if (imageFiles != null && imageFiles.Count > 0)
             {
@@ -71,7 +86,7 @@ namespace Shoe_Store_HandleAPI.Controllers
                 {
                     if (imageFile.Length > 0)
                     {
-                        var imageUrl = await SaveImageFile(imageFile, "Imgdetail"); 
+                        var imageUrl = await SaveImageFile(imageFile, "Imgdetail");
                         var imageDetail = new ImageDetail
                         {
                             ImageUrl = imageUrl,
@@ -89,7 +104,7 @@ namespace Shoe_Store_HandleAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Update(int id)
         {
-            var product = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories) .Include(p => p.productSizes).FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).FirstOrDefaultAsync(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -100,7 +115,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Product>> Update(int id, [FromForm] Product updatedProduct, [FromForm] List<int> categorys,[FromForm] List<int> productsize, [FromForm] List<IFormFile> imageFiles)
+        public async Task<ActionResult<Product>> Update(int id, [FromForm] Product updatedProduct, [FromForm] List<int> categorys, [FromForm] List<int> productsize, [FromForm] List<IFormFile> imageFiles)
         {
             var product = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).FirstOrDefaultAsync(p => p.Id == id);
 

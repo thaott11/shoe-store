@@ -1,4 +1,4 @@
-﻿@model Shoe_Store.Models.LoginCallAPI
+﻿@model Data.Models.ModelLogin
 <div class="login-box">
     <div class="login-logo"> <a href="../index2.html"><b>Admin</b>LTE</a> </div> <!-- /.login-logo -->
     <div class="card">
@@ -6,14 +6,14 @@
             <p class="login-box-msg">Sign in to start your session</p>
             <form asp-action="Login" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Email" asp-for="UserMail" required>
+                    <input type="text" class="form-control" placeholder="Email" asp-for="UserOrMail" required>
                     <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
-                    <span asp-validation-for="UserMail" class="text-danger"></span>
-                </div>
+                    <span asp-validation-for="UserOrMail" class="text-danger"></span>
+                </div>  
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Passwords" asp-for="Passwords" required>
+                    <input type="password" class="form-control" placeholder="Password" asp-for="Password" required>
                     <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    <span asp-validation-for="Passwords" class="text-danger"></span>
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
 
                 <div class="row">
@@ -30,15 +30,7 @@
                     </div> <!-- /.col -->
                 </div> <!--end::Row-->
             </form>
-            <div class="social-auth-links text-center mb-3 d-grid gap-2">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-primary">
-                    <i class="bi bi-facebook me-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-danger">
-                    <i class="bi bi-google me-2"></i> Sign in using Google+
-                </a>
-            </div> <!-- /.social-auth-links -->
+            
             <p class="mb-1"> <a href="forgot-password.html">I forgot my password</a> </p>
             <p class="mb-0">
                 <a asp-action="Register" class="text-center">Register a new membership</a>

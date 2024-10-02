@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shoe_Store_HandleAPI.Models;
+using Data.Models;
 
 namespace Shoe_Store_HandleAPI.Controllers
 {

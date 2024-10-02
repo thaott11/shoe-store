@@ -53,7 +53,6 @@ D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_S
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_Store_HandleAPI.AssemblyInfoInputs.cache
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_Store_HandleAPI.AssemblyInfo.cs
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_Store_HandleAPI.csproj.CoreCompileInputs.cache
-D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_Store_HandleAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_Store_HandleAPI.MvcApplicationPartsAssemblyInfo.cache
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\staticwebassets\msbuild.Shoe_Store_HandleAPI.Microsoft.AspNetCore.StaticWebAssets.props
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\staticwebassets\msbuild.build.Shoe_Store_HandleAPI.props
@@ -70,3 +69,8 @@ D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_S
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_Store_HandleAPI.genruntimeconfig.cache
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\ref\Shoe_Store_HandleAPI.dll
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Shoe_Store_HandleAPI.staticwebassets.runtime.json
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.deps.json
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.runtimeconfig.json
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.exe
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.dll
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.pdb

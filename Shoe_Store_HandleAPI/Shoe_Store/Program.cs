@@ -1,4 +1,4 @@
-using Shoe_Store.Models;
+using Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

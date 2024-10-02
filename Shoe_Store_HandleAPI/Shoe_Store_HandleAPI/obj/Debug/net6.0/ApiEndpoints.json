@@ -19,7 +19,7 @@
     "Parameters": [
       {
         "Name": "login",
-        "Type": "Shoe_Store_HandleAPI.Models.ModelLogin",
+        "Type": "Data.Models.ModelLogin",
         "IsRequired": true
       }
     ],
@@ -45,7 +45,7 @@
     "Parameters": [
       {
         "Name": "client",
-        "Type": "Shoe_Store_HandleAPI.Models.Client",
+        "Type": "Data.Models.Client",
         "IsRequired": true
       }
     ],
@@ -71,13 +71,13 @@
     "Parameters": [
       {
         "Name": "category",
-        "Type": "Shoe_Store_HandleAPI.Models.Category",
+        "Type": "Data.Models.Category",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.Category",
+        "Type": "Data.Models.Category",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -102,13 +102,13 @@
       },
       {
         "Name": "category",
-        "Type": "Shoe_Store_HandleAPI.Models.Category",
+        "Type": "Data.Models.Category",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.Category",
+        "Type": "Data.Models.Category",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -134,7 +134,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.Category",
+        "Type": "Data.Models.Category",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -159,13 +159,13 @@
       },
       {
         "Name": "client",
-        "Type": "Shoe_Store_HandleAPI.Models.Client",
+        "Type": "Data.Models.Client",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.Client",
+        "Type": "Data.Models.Client",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -201,7 +201,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shoe_Store_HandleAPI.Models.Product, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Data.Models.Product, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -261,27 +261,27 @@
       },
       {
         "Name": "ImageDetails",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.ImageDetail, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.ImageDetail, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "Categories",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.Category, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.Category, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "reviews",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.Review, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.Review, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "orderDetails",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.OrderDetail, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.OrderDetail, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "productSizes",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.ProductSize, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.ProductSize, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -302,7 +302,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.Product",
+        "Type": "Data.Models.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -328,7 +328,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.Product",
+        "Type": "Data.Models.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -393,27 +393,27 @@
       },
       {
         "Name": "ImageDetails",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.ImageDetail, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.ImageDetail, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "Categories",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.Category, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.Category, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "reviews",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.Review, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.Review, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "orderDetails",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.OrderDetail, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.OrderDetail, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
         "Name": "productSizes",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Shoe_Store_HandleAPI.Models.ProductSize, Shoe_Store_HandleAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Data.Models.ProductSize, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -434,7 +434,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.Product",
+        "Type": "Data.Models.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -480,13 +480,13 @@
     "Parameters": [
       {
         "Name": "productSize",
-        "Type": "Shoe_Store_HandleAPI.Models.ProductSize",
+        "Type": "Data.Models.ProductSize",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.ProductSize",
+        "Type": "Data.Models.ProductSize",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -511,13 +511,13 @@
       },
       {
         "Name": "productSize",
-        "Type": "Shoe_Store_HandleAPI.Models.ProductSize",
+        "Type": "Data.Models.ProductSize",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.ProductSize",
+        "Type": "Data.Models.ProductSize",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -543,7 +543,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Shoe_Store_HandleAPI.Models.ProductSize",
+        "Type": "Data.Models.ProductSize",
         "MediaTypes": [
           "text/plain",
           "application/json",

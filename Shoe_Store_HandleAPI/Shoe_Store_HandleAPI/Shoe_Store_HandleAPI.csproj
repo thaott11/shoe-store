@@ -29,4 +29,8 @@
     <Folder Include="wwwroot\Imgdetail\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+  </ItemGroup>
+
 </Project>

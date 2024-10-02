@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "k1w9KW8Lf3rpASQGoffbwdiwFmHxW7mxYgh8YzoLfbE=",
+  "Hash": "+jfIlNVkj/lyYInQhsZdLrd5fycITP25/0sXce9yMSc=",
   "Source": "Shoe_Store",
   "BasePath": "_content/Shoe_Store",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\Data.csproj",
+      "Version": 2,
+      "Source": "Data",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [
     {
       "Name": "Shoe_Store\\wwwroot",

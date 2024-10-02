@@ -1,14 +1,21 @@
+using Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Shoe_Store_HandleAPI.Models;
 using Shoe_Store_HandleAPI.Service;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ModelDbContext>();
 builder.Services.AddTransient<EmailService>();
-
+builder.Services.AddDbContext<ModelDbContext>();
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -36,6 +43,8 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -50,6 +59,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 app.UseSession();

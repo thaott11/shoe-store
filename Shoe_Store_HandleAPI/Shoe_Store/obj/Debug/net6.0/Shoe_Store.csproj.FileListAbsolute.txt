@@ -79,3 +79,8 @@ D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\Newtonsoft.Json.
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\PagedList.dll
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\PagedList.Mvc.dll
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\obj\Debug\net6.0\scopedcss\Views\Product\_Layout.cshtml.rz.scp.css
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\Data.deps.json
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\Data.runtimeconfig.json
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\Data.exe
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\Data.dll
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store\bin\Debug\net6.0\Data.pdb

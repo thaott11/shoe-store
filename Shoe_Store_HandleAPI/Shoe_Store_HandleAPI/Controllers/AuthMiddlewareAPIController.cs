@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Shoe_Store_HandleAPI.Models;
+using Data.Models;
 using Shoe_Store_HandleAPI.Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

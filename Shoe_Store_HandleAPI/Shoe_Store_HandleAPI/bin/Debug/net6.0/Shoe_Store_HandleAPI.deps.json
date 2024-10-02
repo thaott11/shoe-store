@@ -9,6 +9,7 @@
       "Shoe_Store_HandleAPI/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "Data": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.32",
           "Microsoft.EntityFrameworkCore": "6.0.32",
           "Microsoft.EntityFrameworkCore.Design": "6.0.32",
@@ -526,6 +527,15 @@
             "fileVersion": "4.700.19.56404"
           }
         }
+      },
+      "Data/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.32",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.32"
+        },
+        "runtime": {
+          "Data.dll": {}
+        }
       }
     }
   },
@@ -898,6 +908,11 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

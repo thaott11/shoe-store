@@ -1,4 +1,4 @@
-﻿@model IPagedList<Shoe_Store.Models.Product>
+﻿@model IPagedList<Data.Models.Product>
 @using PagedList;
 @using PagedList.Mvc;
 
@@ -56,8 +56,8 @@
                                             <th>Price</th>
                                             <th>Description</th>
                                             <th>Image</th>
-                                            <th>Categories</th> <!-- Cột danh mục -->
-                                            <th>Sizes</th> <!-- Cột kích thước -->
+                                            <th>Categories</th> 
+                                            <th>Sizes</th> 
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -87,9 +87,9 @@
                                                         }
                                                     </td>
                                                     <td class="align-middle">
-                                                        @if (product.ProductSizes != null && product.ProductSizes.Count > 0)
+                                                        @if (product.productSizes != null && product.productSizes.Count > 0)
                                                         {
-                                                            foreach (var size in product.ProductSizes)
+                                                            foreach (var size in product.productSizes)
                                                             {
                                                                 <span class="badge bg-success">@size.Size</span>
                                                             }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Shoe_Store.Models;
+using Data.Models;
 using System.Security.Claims;
 
 namespace Shoe_Store.Controllers

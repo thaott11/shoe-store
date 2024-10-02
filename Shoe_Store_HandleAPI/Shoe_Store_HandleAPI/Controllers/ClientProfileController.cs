@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Shoe_Store_HandleAPI.Models;
+using Data.Models;
 
 namespace Shoe_Store_HandleAPI.Controllers
 {

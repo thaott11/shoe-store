@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Shoe_Store",
-    "\\Shoe_Store\\Controllers"
+    "\\Shoe_Store\\Controllers",
+    "\\Shoe_Store\\Views",
+    "\\Shoe_Store\\Views\\Product",
+    "\\Shoe_Store_HandleAPI",
+    "\\Shoe_Store_HandleAPI\\Controllers"
   ],
-  "SelectedNode": "\\Shoe_Store_HandleAPI.sln",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }

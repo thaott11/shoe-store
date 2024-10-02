@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Shoe_Store.Models;
+using Data.Models;
 using System.Text.Json;
 using System.Text;
 
@@ -43,13 +43,13 @@ namespace Shoe_Store.Controllers
 
         public IActionResult Login()
         {
-            return View(new LoginCallAPI());
+            return View(new ModelLogin());
         }
 
 
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginCallAPI model)
+        public async Task<IActionResult> Login(ModelLogin model)
         {
             // Kiểm tra tính hợp lệ của model trước khi gửi yêu cầu đến API
             if (!ModelState.IsValid)
@@ -58,7 +58,7 @@ namespace Shoe_Store.Controllers
             }
 
             // Tạo đối tượng dữ liệu đăng nhập
-            var loginData = new { model.UserMail, Password = model.Passwords };
+            var loginData = new { model.UserOrMail, Password = model.Password };
             var json = JsonSerializer.Serialize(loginData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
