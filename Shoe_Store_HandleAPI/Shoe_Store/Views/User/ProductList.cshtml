@@ -1,0 +1,86 @@
+﻿
+<div class="row mt-4">
+    <div class="col-md-2">
+        <!-- Phần danh sách -->
+        <h2>Danh sách</h2>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active">Mục 1</a>
+            <a href="#" class="list-group-item list-group-item-action">Mục 2</a>
+            <a href="#" class="list-group-item list-group-item-action">Mục 3</a>
+            <a href="#" class="list-group-item list-group-item-action">Mục 4</a>
+            <a href="#" class="list-group-item list-group-item-action">Mục 5</a>
+            <a href="#" class="list-group-item list-group-item-action">Mục 6</a>
+            <a href="#" class="list-group-item list-group-item-action">Mục 7</a>
+            <!-- Thêm các mục khác vào đây -->
+        </div>
+    </div>
+    @*  <div class="col-md-10">
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid text-center">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+    <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Features</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Pricing</a>
+    </li>
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown link
+    </a>
+    <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </nav>
+    <!-- Phần sản phẩm -->
+    <h2>Sản phẩm</h2>
+    @if (Model.Count == 0)
+    {
+    <p class="text-center">Không có sản phẩm nào!</p>
+    }
+    else
+    {
+    <div class="row">
+    <!-- Lặp qua danh sách sản phẩm để hiển thị từng sản phẩm -->
+    @foreach (var sanpham in Model)
+    {
+    <div class="col-md-4 mb-4">
+    <a asp-action="SanPhamChitiet" asp-route-id="@sanpham.SanPhamId" class="text-decoration-none text-dark">
+    <div class="card h-100 border-0">
+    @if (sanpham.HinhAnh != null && sanpham.HinhAnh.Length > 0)
+    {
+    <img src="data:image/jpeg;base64,@(Convert.ToBase64String(sanpham.HinhAnh))" class="card-img-top" alt="Hình ảnh sản phẩm" />
+    }
+    else
+    {
+    <img src="https://via.placeholder.com/150" class="card-img-top" alt="No image" />
+    }
+    <div class="card-body">
+    <h5 class="card-title">@sanpham.Ten</h5>
+    <p class="card-text">@sanpham.MoTa</p>
+    <p class="card-text"><strong>Giá:</strong> @sanpham.Gia VND</p>
+    <p class="card-text"><strong>Màu sắc:</strong> @sanpham.MauSac</p>
+    </div>
+    </div>
+    </a>
+    </div>
+    }
+    </div>
+    }
+    </div> *@
+</div>

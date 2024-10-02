@@ -1,0 +1,79 @@
+﻿<div class="register-box">
+    <div class="register-logo">
+        <a href="../index2.html"><b>Admin</b>LTE</a>
+    </div> <!-- /.register-logo -->
+    <div class="card">
+        <div class="card-body register-card-body">
+            <p class="register-box-msg">Register a new membership</p>
+            <form asp-action="Register" asp-controller="AuthMiddleware" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" name="Name" class="form-control" placeholder="Full Name" required>
+                    <div class="input-group-text">
+                        <span class="bi bi-person"></span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="email" name="Email" class="form-control" placeholder="Email" required>
+                    <div class="input-group-text">
+                        <span class="bi bi-envelope"></span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="Address" class="form-control" placeholder="Address" required>
+                    <div class="input-group-text">
+                        <span class="bi bi-house"></span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="Phone" class="form-control" placeholder="Phone" required>
+                    <div class="input-group-text">
+                        <span class="bi bi-phone"></span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="Password" class="form-control" placeholder="Password" required minlength="6" autocomplete="off">
+                    <div class="input-group-text">
+                        <span class="bi bi-lock-fill"></span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <select name="RoleId" class="form-control" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
+                        <!-- Thêm các lựa chọn khác nếu cần -->
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" required>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I agree to the <a href="#">terms</a>
+                            </label>
+                        </div>
+                    </div> <!-- /.col -->
+                    <div class="col-4">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </div> <!-- /.col -->
+                </div> <!--end::Row-->
+            </form>
+            <div class="social-auth-links text-center mb-3 d-grid gap-2">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-primary">
+                    <i class="bi bi-facebook me-2"></i> Sign in using Facebook
+                </a>
+                <a href="#" class="btn btn-danger">
+                    <i class="bi bi-google me-2"></i> Sign in using Google+
+                </a>
+            </div> <!-- /.social-auth-links -->
+            <p class="mb-0">
+                <a href="login.html" class="text-center">
+                    I already have a membership
+                </a>
+            </p>
+        </div> <!-- /.register-card-body -->
+    </div>
+</div>

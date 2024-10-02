@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shoe_Store</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Shoe_Store.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .carousel-item img {
+            object-fit: cover;
+            height: 500px;
+        }
+
+        .icon-large {
+            font-size: 1.5rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+            .search-box .search-icon {
+                position: absolute;
+                right: 0.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 1.2rem;
+                color: #6c757d;
+            }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid mx-5">
+                <img src="~/image/Logo.png" alt="Logo" style="height: 40px;" />
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Use" asp-action="UseIndex">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListSanPham">Privacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddNhaCungcap">NhaCC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddLoai">NhaCC</a>
+                    </li>
+                </ul>
+
+                <div class="search-box mx-3 text-center" style="flex-grow: 1;justify-content: center;">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <i class="bi bi-search search-icon"></i>
+                </div>
+                <div class="d-flex align-items-center ">
+                    <i class="bi bi-person me-3 icon-large" style="font-size: 1.9rem; margin-bottom: 2px"></i>
+                    <i class="bi bi-heart me-3 icon-large"></i>
+                    <i class="bi bi-bag-dash icon-large" style="margin-bottom: 2px"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="height=500px">
+                <img src="~/image/banner1.jpeg" class="d-block w-100 " alt="Banner 1">
+            </div>
+            <div class="carousel-item">
+                <img src="~/image/banner2.jpeg" class="d-block w-100 " alt="Banner 2">
+            </div>
+            <div class="carousel-item">
+                <img src="~/image/banner3.jpeg" class="d-block w-100 " alt="Banner 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-dark text-white text-center ">
+
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <a href="">
+                        <img src="https://img.icons8.com/?size=100&id=GnODgj39wOZm&format=png&color=000000"
+                             alt="" style="height: 70px;">
+                    </a>
+                    <p>&copy; 2024 Company Thaott. All rights reserved.</p>
+                    <ul class="list-unstyled small text-muted">
+                        <li class="mb-2">
+                            Designed and built with all the love in the world by the <a href="">
+                                ThaoDev
+                                Team
+                            </a> with the <a href="">held me</a>.
+                        </li>
+                        <li class="mb-2">
+                            Code licensed <a href="" target="" rel="">ASP.Net</a>, docs <a href=""
+                                                                                           rel="">BY WEB 3.0</a>.
+                        </li>
+                        <li class="mb-2">Currently v5.0.2.</li>
+                        <li class="mb-2">Analytics by <a href="" rel="">Thaott</a>.</li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="">Home</a></li>
+                        <li class="mb-2"><a href="">Products</a></li>
+                        <li class="mb-2"><a href="">Services</a></li>
+                        <li class="mb-2"><a href="">Contact</a></li>
+                        <li class="mb-2"><a href="">About</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Guides</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="">Getting started</a></li>
+                        <li class="mb-2"><a href="">Starter template</a></li>
+                        <li class="mb-2"><a href="">Webpack</a></li>
+                        <li class="mb-2"><a href="">Parcel</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Projects</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="">Bootstrap 5</a></li>
+                        <li class="mb-2"><a href="">Bootstrap 4</a></li>
+                        <li class="mb-2"><a href="">Icons</a></li>
+                        <li class="mb-2"><a href="">RFS</a></li>
+                        <li class="mb-2"><a href="">npm starter</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Community</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="">Issues</a></li>
+                        <li class="mb-2"><a href="">Discussions</a></li>
+                        <li class="mb-2"><a href="">Corporate sponsors</a></li>
+                        <li class="mb-2"><a href="">Open Collective</a></li>
+                        <li class="mb-2"><a href="">Stack Overflow</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,140 @@
+﻿@model IPagedList<Shoe_Store.Models.Product>
+@using PagedList;
+@using PagedList.Mvc;
+
+<main class="app-main">
+
+    <div class="app-content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h3 class="mb-0">Product List</h3>
+                </div>
+                <div class="col-sm-4">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Product List</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Action</h3>
+                            <div class="card-tools d-flex align-items-center justify-content-center" style="padding-top: 10px;">
+                                <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
+                                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <a asp-action="CreateProduct" class="btn btn-primary mb-3" title="Add Product">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h3 class="card-title">Product Information</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Description</th>
+                                            <th>Image</th>
+                                            <th>Categories</th> <!-- Cột danh mục -->
+                                            <th>Sizes</th> <!-- Cột kích thước -->
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null && Model.Count > 0)
+                                        {
+                                            foreach (var product in Model)
+                                            {
+                                                <tr>
+                                                    <td class="align-middle">@product.ProductName</td>
+                                                    <td class="align-middle">@product.Price.ToString("C")</td>
+                                                    <td class="align-middle">@product.Description</td>
+                                                    <td class="align-middle">
+                                                        <img src="@Url.Content("~/images/" + product.Image)" alt="Product Image" class="img-fluid" style="width: 100px; height: auto;" />
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        @if (product.Categories != null && product.Categories.Count > 0)
+                                                        {
+                                                            foreach (var category in product.Categories)
+                                                            {
+                                                                <span class="badge bg-primary">@category.NameCategory</span>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="text-muted">No categories</span>
+                                                        }
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        @if (product.ProductSizes != null && product.ProductSizes.Count > 0)
+                                                        {
+                                                            foreach (var size in product.ProductSizes)
+                                                            {
+                                                                <span class="badge bg-success">@size.Size</span>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="text-muted">No sizes</span>
+                                                        }
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a asp-action="UpdateProduct" asp-route-id="@product.Id" class="btn">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a asp-action="DeleteProduct" asp-route-id="@product.Id" class="btn" onclick="return confirm('Are you sure you want to delete this product?');">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="7" class="text-center">No products found.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div> <!-- /.table-responsive -->
+                        </div> <!-- /.card-body -->
+
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-end">
+                                @for (int i = 1; i <= Model.PageCount; i++)
+                                {
+                                    <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("ProductList", new { page = i })">@i</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div> <!-- /.card-footer -->
+                    </div> <!-- /.card -->
+                </div> <!--end::Row-->
+            </div> <!-- /.card -->
+        </div> <!--end::Container-->
+    </div> <!--end::App Content-->
+
+</main> <!--end::App Main-->
