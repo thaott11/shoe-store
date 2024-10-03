@@ -1,0 +1,103 @@
+﻿@model IPagedList<Data.Models.Category>
+@using PagedList;
+@using PagedList.Mvc;
+
+<main class="app-main">
+
+    <div class="app-content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h3 class="mb-0">Category List</h3>
+                </div>
+                <div class="col-sm-4">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item active" aria-current="page">Category List</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Action</h3>
+                            <div class="card-tools d-flex align-items-center justify-content-center" style="padding-top: 10px;">
+                                <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
+                                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <a asp-action="CreateCategory" class="btn btn-primary mb-3" title="Add Category">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h3 class="card-title">Category Information</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>NameCategory</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null && Model.Count > 0)
+                                        {
+                                            foreach (var category in Model)
+                                            {
+                                                <tr>
+                                                    <td class="align-middle">@category.NameCategory</td>
+                                                   
+                                                    <td class="align-middle">
+                                                        <a asp-action="UpdateCategory" asp-route-id="@category.Id" class="btn">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a asp-action="DeleteCategory" asp-route-id="@category.Id" class="btn" onclick="return confirm('Are you sure you want to delete this category?');">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="7" class="text-center">No category found.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </div>
+
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-end">
+                                @for (int i = 1; i <= Model.PageCount; i++)
+                                {
+                                    <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("CategoryList", new { page = i })">@i</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </div> 
+    </div>
+
+</main>

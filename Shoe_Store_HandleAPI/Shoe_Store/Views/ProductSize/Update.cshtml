@@ -1,0 +1,52 @@
+﻿<div class="content-wrapper">
+    <div class="app-content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h3 class="mb-0">Update Category</h3>
+                </div>
+                <div class="col-sm-4">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item">
+                            <a asp-action="SizeList">Size List</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Update Size</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Update Size</h3>
+                        </div>
+
+                        <form asp-action="Update" method="post" id="quickForm">
+                            <input type="hidden" name="SizeId" value="@Model.SizeId" />
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="Size">Size Name</label>
+                                    <input type="text" name="Size" class="form-control" id="Size"
+                                           placeholder="Enter Size name"
+                                           required maxlength="3"
+                                           value="@Model.Size" />
+                                </div>
+                            </div>
+
+                            <div class="card-footer text-end">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <a asp-action="SizeList" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

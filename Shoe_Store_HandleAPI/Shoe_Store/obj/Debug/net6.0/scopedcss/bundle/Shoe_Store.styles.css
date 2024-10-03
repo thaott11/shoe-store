@@ -47,6 +47,104 @@ button.accept-policy[b-zt88cczk52] {
   white-space: nowrap;
   line-height: 60px;
 }
+/* _content/Shoe_Store/Views/Category/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-oh5ljm5m0g] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-oh5ljm5m0g] {
+  color: #0077cc;
+}
+
+.btn-primary[b-oh5ljm5m0g] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-oh5ljm5m0g], .nav-pills .show > .nav-link[b-oh5ljm5m0g] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-oh5ljm5m0g] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-oh5ljm5m0g] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-oh5ljm5m0g] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-oh5ljm5m0g] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-oh5ljm5m0g] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+/* _content/Shoe_Store/Views/ProductSize/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-f4z7599env] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-f4z7599env] {
+  color: #0077cc;
+}
+
+.btn-primary[b-f4z7599env] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-f4z7599env], .nav-pills .show > .nav-link[b-f4z7599env] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-f4z7599env] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-f4z7599env] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-f4z7599env] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-f4z7599env] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-f4z7599env] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
 /* _content/Shoe_Store/Views/Product/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */

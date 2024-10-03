@@ -16,7 +16,6 @@ namespace Shoe_Store_HandleAPI.Controllers
             _db = db;
         }
 
-        // GET: api/ProductSize
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -24,41 +23,45 @@ namespace Shoe_Store_HandleAPI.Controllers
             return Ok(productSizes);
         }
 
-        // POST: api/ProductSize
         [HttpPost]
         public async Task<ActionResult<ProductSize>> Create([FromBody] ProductSize productSize)
         {
             if (productSize == null)
             {
-                return BadRequest("ProductSize is null");
+                return BadRequest("Category is null");
             }
 
             _db.ProductSizes.Add(productSize);
             await _db.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAll), productSize);
+            return CreatedAtAction(nameof(GetAll), new { id = productSize.SizeId }, productSize);
         }
 
-        // PUT: api/ProductSize/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductSize>> GetById(int id)
+        {
+            var size = await _db.ProductSizes.FindAsync(id);
+            if (size == null)
+            {
+                return NotFound("size not found");
+            }
+            return Ok(size);
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<ProductSize>> Update(int id, [FromBody] ProductSize productSize)
         {
-            if (productSize == null)
-            {
-                return BadRequest("ProductSize is null");
-            }
-
             var update = await _db.ProductSizes.FindAsync(id);
             if (update == null)
             {
-                return NotFound(); // Trả về 404 nếu không tìm thấy product size
+                return NotFound();
             }
 
-            // Cập nhật các thuộc tính cần thiết
-            update.Size = productSize.Size; // Giả sử có thuộc tính Size
-            await _db.SaveChangesAsync(); // Đợi cho đến khi lưu thay đổi
+            update.Size = productSize.Size;
+            await _db.SaveChangesAsync();
             return Ok(update);
         }
+
 
         // DELETE: api/ProductSize/{id}
         [HttpDelete("{id}")]
@@ -67,12 +70,12 @@ namespace Shoe_Store_HandleAPI.Controllers
             var delete = await _db.ProductSizes.FindAsync(id);
             if (delete == null)
             {
-                return NotFound(); // Trả về 404 nếu không tìm thấy product size
+                return NotFound(); 
             }
 
             _db.ProductSizes.Remove(delete);
-            await _db.SaveChangesAsync(); // Đợi cho đến khi lưu thay đổi
-            return Ok(delete); // Trả về product size đã xóa
+            await _db.SaveChangesAsync(); 
+            return Ok(delete);
         }
     }
 }

@@ -36,12 +36,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aE1pZGRsZXdhcmVcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Category/CategoryList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Category/CreateCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Category/UpdateCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcVXBkYXRlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/ProductSize/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFNpemVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/ProductSize/SizeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFNpemVcU2l6ZUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/ProductSize/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFNpemVcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Product/CreateProduct.cshtml]
@@ -91,6 +115,14 @@ build_metadata.AdditionalFiles.CssScope =
 [D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Admin/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-zt88cczk52
+
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Category/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-oh5ljm5m0g
+
+[D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/ProductSize/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFNpemVcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-f4z7599env
 
 [D:/FPT/Project/Shoe_Store_HandleAPI/Shoe_Store/Views/Product/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfTGF5b3V0LmNzaHRtbA==

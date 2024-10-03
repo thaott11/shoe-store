@@ -37,18 +37,30 @@ namespace Shoe_Store_HandleAPI.Controllers
             return CreatedAtAction(nameof(GetAll), new { id = category.Id }, category);
         }
 
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Category>> GetById(int id)
+        {
+            var category = await _db.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound("Category not found");
+            }
+            return Ok(category);
+        }
+
+
         [HttpPut("{id}")]
         public async Task<ActionResult<Category>> Update(int id, [FromBody] Category category)
         {
-            
             var update = await _db.Categories.FindAsync(id);
             if (update == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             update.NameCategory = category.NameCategory;
-            await _db.SaveChangesAsync(); 
+            await _db.SaveChangesAsync();
             return Ok(update);
         }
 

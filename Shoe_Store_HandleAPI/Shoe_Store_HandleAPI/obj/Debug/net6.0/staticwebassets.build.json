@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+9JQPsStfEPPVAXGf2cAWxrhkrtfLKym6ewaYYEiQ5A=",
+  "Hash": "fSQiK9r05kT0Nhc3y9OPdcN9ZGAbRfMgiSc7uZ68h6Y=",
   "Source": "Shoe_Store_HandleAPI",
   "BasePath": "_content/Shoe_Store_HandleAPI",
   "Mode": "Default",
@@ -265,6 +265,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\adv3acvk.a3u.png"
+    },
+    {
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\images\\as2xxtzr.s4x.png",
+      "SourceId": "Shoe_Store_HandleAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\",
+      "BasePath": "_content/Shoe_Store_HandleAPI",
+      "RelativePath": "images/as2xxtzr.s4x.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\as2xxtzr.s4x.png"
     },
     {
       "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\images\\clofaqfb.y2a.png",
@@ -624,6 +641,23 @@
       "OriginalItemSpec": "wwwroot\\images\\qwbr2azb.lgb.png"
     },
     {
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\images\\rumrdvv1.40f.png",
+      "SourceId": "Shoe_Store_HandleAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\",
+      "BasePath": "_content/Shoe_Store_HandleAPI",
+      "RelativePath": "images/rumrdvv1.40f.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\rumrdvv1.40f.png"
+    },
+    {
       "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\images\\skcvjaee.vx4.png",
       "SourceId": "Shoe_Store_HandleAPI",
       "SourceType": "Discovered",
@@ -809,6 +843,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imgdetail\\0kgwvi2d.bqg.jpeg"
+    },
+    {
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\Imgdetail\\1bxknykx.e1o.jpeg",
+      "SourceId": "Shoe_Store_HandleAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\",
+      "BasePath": "_content/Shoe_Store_HandleAPI",
+      "RelativePath": "Imgdetail/1bxknykx.e1o.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imgdetail\\1bxknykx.e1o.jpeg"
     },
     {
       "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\Imgdetail\\20tapy1z.bpc.jpeg",
@@ -1234,6 +1285,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imgdetail\\ivavwh0u.lfk.jpeg"
+    },
+    {
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\Imgdetail\\j2b0bdk3.r3x.png",
+      "SourceId": "Shoe_Store_HandleAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\",
+      "BasePath": "_content/Shoe_Store_HandleAPI",
+      "RelativePath": "Imgdetail/j2b0bdk3.r3x.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imgdetail\\j2b0bdk3.r3x.png"
     },
     {
       "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\wwwroot\\Imgdetail\\j2xkn515.c1n.jpeg",
