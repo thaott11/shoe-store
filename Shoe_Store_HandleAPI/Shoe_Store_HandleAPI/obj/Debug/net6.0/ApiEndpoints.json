@@ -340,7 +340,7 @@
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",
-    "Method": "Update",
+    "Method": "UpdateProduct",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -443,12 +443,12 @@
         "IsRequired": false
       },
       {
-        "Name": "categorys",
+        "Name": "categoryIds",
         "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "productsize",
+        "Name": "productSizeIds",
         "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
@@ -458,17 +458,7 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "Data.Models.Product",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",
@@ -481,6 +471,38 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",
+    "Method": "GetImage",
+    "RelativePath": "api/Products/GetImage/{imageName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "imageName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",
+    "Method": "GetImageDetail",
+    "RelativePath": "api/Products/GetImageDetail/{imageName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "imageName",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

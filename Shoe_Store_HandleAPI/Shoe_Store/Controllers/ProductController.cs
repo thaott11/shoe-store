@@ -10,10 +10,12 @@ namespace Shoe_Store.Controllers
     public class ProductController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
 
-        public ProductController(IHttpClientFactory httpClientFactory)
+        public ProductController(IHttpClientFactory httpClientFactory, HttpClient client)
         {
             _httpClientFactory = httpClientFactory;
+            _httpClient = client;
         }
 
         public async Task<IActionResult> ProductList(int? page)
@@ -40,6 +42,7 @@ namespace Shoe_Store.Controllers
             }
         }
 
+
         public async Task<IActionResult> CreateProduct()
         {
             // Lấy tất cả category và productsize để hiển thị dưới dạng checkbox
@@ -57,15 +60,11 @@ namespace Shoe_Store.Controllers
 
                 ViewBag.Categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
                 ViewBag.ProductSizes = JsonConvert.DeserializeObject<List<ProductSize>>(sizesJson);
-
-
-
                 return View();
             }
-
             else
             {
-                ViewBag.ErrorMessage = "Could not retrieve categories or sizes from the API.";
+                ViewBag.ErrorMessage = "Lỗi";
                 return View();
             }
         }
@@ -136,7 +135,7 @@ namespace Shoe_Store.Controllers
                     }
                     else
                     {
-                        ViewBag.ErrorMessage = "An error occurred while creating the product.";
+                        ViewBag.ErrorMessage = "Lỗi";
                     }
                 }
             }
@@ -187,7 +186,7 @@ namespace Shoe_Store.Controllers
             if (ModelState.IsValid)
             {
                 var httpClient = _httpClientFactory.CreateClient();
-                var apiUrl = $"https://localhost:7172/api/products/{model.Id}";
+                var apiUrl = $"https://localhost:7172/api/Products/{model.Id}";
 
                 using (var formData = new MultipartFormDataContent())
                 {
@@ -236,12 +235,16 @@ namespace Shoe_Store.Controllers
                     }
                     else
                     {
-                        ViewBag.ErrorMessage = "Error updating product: " + response.ReasonPhrase;
+                        var errorContent = await response.Content.ReadAsStringAsync();
+                        ViewBag.ErrorMessage = $"Error updating product: {response.ReasonPhrase}. Details: {errorContent}";
                     }
                 }
             }
             return View(model);
         }
+
+
+
 
         public async Task<IActionResult> DeleteProduct(int id)
         {
@@ -263,5 +266,32 @@ namespace Shoe_Store.Controllers
             return RedirectToAction("ProductList");
         }
 
+        // Phương thức để lấy hình ảnh chính
+        public async Task<IActionResult> GetImage(string imageName)
+        {
+            // Gọi API để lấy file ảnh dựa vào tên hình ảnh
+            var response = await _httpClient.GetAsync($"https://localhost:7172/api/Products/GetImage/{imageName}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var imageBytes = await response.Content.ReadAsByteArrayAsync();
+                var contentType = response.Content.Headers.ContentType?.ToString() ?? "image/jpeg";
+                return File(imageBytes, contentType); // Trả về hình ảnh dưới dạng FileContentResult
+            }
+
+            return NotFound(); // Trả về lỗi nếu không có ảnh
+        }
+        public async Task<IActionResult> GetImageDetail(string imageNamedetail)
+        {
+            var response = await _httpClient.GetAsync($"https://localhost:7172/api/Products/GetImageDetail/{imageNamedetail}");
+            if (response.IsSuccessStatusCode)
+            {
+                var imageBytes = await response.Content.ReadAsByteArrayAsync();
+                var contentType = response.Content.Headers.ContentType?.ToString() ?? "Imgdetail/jpeg";
+                return File(imageBytes, contentType);
+            }
+
+            return NotFound();
+        }
     }
 }

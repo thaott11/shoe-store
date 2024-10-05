@@ -7,6 +7,10 @@ builder.Services.AddDbContext<ModelDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 
+
+
+
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(10); // Th?i gian h?t h?n session
@@ -14,7 +18,15 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true; // Cookie c?n thi?t cho ?ng d?ng
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
 var app = builder.Build();
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -24,13 +36,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseSession(); // S? d?ng session
-
-
 app.UseAuthorization();
 
 app.MapControllerRoute(

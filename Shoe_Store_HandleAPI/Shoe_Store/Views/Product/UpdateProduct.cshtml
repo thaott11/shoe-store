@@ -54,7 +54,7 @@
                                         </div>
 
                                         <!-- Product Categories -->
-                                        <div class="form-group">
+                                        <div class="form-group mt-4">
                                             <label>Product Categories</label>
                                             <div>
                                                 @if (ViewBag.Categories != null && ViewBag.Categories.Count > 0)
@@ -75,7 +75,7 @@
                                         </div>
 
                                         <!-- Product Sizes -->
-                                        <div class="form-group">
+                                        <div class="form-group mt-4">
                                             <label>Product Sizes</label>
                                             <div>
                                                 @if (ViewBag.ProductSizes != null)
@@ -100,11 +100,11 @@
                                     <div class="card-body col-lg-4">
                                         <div class="image-container position-relative">
                                             <img id="imagePreview" class="image-preview img-fluid"
-                                                 src="@(!string.IsNullOrEmpty(Model.Image) ? Model.Image : Url.Content("~/Image/null-image.png"))" alt="Image Preview"
-                                                 style="max-width: 150px; max-height: 150px; object-fit: contain;">
-                                            <label for="thumbnail" class="camera-icon position-absolute">
+                                                 src="@Url.Action("GetImage", "Product", new { imageName = Model.Image })" alt="@Model.ProductName" style="width:200px; height: 200px; object-fit: cover;" />
+                                            <label for="thumbnail" class="camera-icon position-absolute" onclick="document.getElementById('thumbnail').click();">
                                                 <i class="fas fa-camera"></i>
                                             </label>
+
                                             <label class="remove-image" style="display:none; cursor:pointer;">
                                                 <i class="fas fa-times"></i>
                                             </label>
@@ -119,18 +119,18 @@
                                     <div class="row">
                                         @for (int i = 0; i < 5; i++)
                                         {
-                                            <div class="col-lg-2">
+                                            var imageUrl = (i < Model.ImageDetails.Count) ? Url.Content($"https://localhost:7172/api/Products/GetImageDetail/{Model.ImageDetails.ElementAt(i).ImageUrl}") : Url.Content("~/Image/null-image.png");
+
+                                            <div class="col-lg-2 col-md-4 col-sm-6">
                                                 <div class="image-container position-relative">
                                                     <img id="imagePreviewDetail_@i" class="image-preview img-fluid"
-                                                         src="@(i < Model.ImageDetails.Count ? Model.ImageDetails.ElementAt(i).ImageUrl : Url.Content("~/Image/null-image.png"))" alt="Detail Image Preview"
-                                                         style="max-width: 80px; max-height: 80px; object-fit: contain;">
+                                                         src="@imageUrl" alt="Detail Image Preview"
+                                                         style="width: 90px; height: 90px; object-fit: cover;">
 
-                                                    <!-- Camera icon for uploading image -->
                                                     <label for="thumbnailDetail_@i" class="camera-icon position-absolute" style="@(i < Model.ImageDetails.Count ? "display:none;" : "")">
                                                         <i class="fas fa-camera"></i>
                                                     </label>
 
-                                                    <!-- Remove image icon (visible if image exists) -->
                                                     <label class="remove-image" style="@(i < Model.ImageDetails.Count ? "display:block;" : "display:none;") cursor:pointer;">
                                                         <i class="fas fa-times"></i>
                                                     </label>
@@ -155,7 +155,34 @@
 </div>
 
 <script>
-    // JavaScript to handle image selection and removal for detail images using event delegation
+    document.getElementById('thumbnail').addEventListener('change', function () {
+        const file = this.files[0];
+        const imagePreview = document.getElementById('imagePreview');
+        const removeImage = imagePreview.parentElement.querySelector('.remove-image');
+        const cameraIcon = imagePreview.parentElement.querySelector('.camera-icon');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                imagePreview.src = event.target.result; // Cập nhật hình ảnh xem trước
+                removeImage.style.display = 'block'; // Hiển thị biểu tượng xóa
+                cameraIcon.style.display = 'none'; // Ẩn biểu tượng camera
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // Nếu không có file nào được chọn, đặt lại ảnh xem trước
+            imagePreview.src = '@Url.Content("~/Image/null-image.png")';
+            removeImage.style.display = 'none'; // Ẩn biểu tượng xóa
+            cameraIcon.style.display = 'block'; // Hiển thị biểu tượng camera
+        }
+    });
+
+    // Xử lý khi nhấp vào biểu tượng camera để mở chọn file
+    document.querySelector('.camera-icon').addEventListener('click', function (event) {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định
+        document.getElementById('thumbnail').click(); // Mở hộp thoại chọn file
+    });
+
     document.querySelectorAll('input[type="file"][id^="thumbnailDetail_"]').forEach(function (input) {
         input.addEventListener('change', function () {
             const index = this.getAttribute('data-index');
@@ -168,29 +195,21 @@
                 const reader = new FileReader();
                 reader.onload = function (event) {
                     imagePreviewDetail.src = event.target.result;
-                    removeImageDetail.style.display = 'block';  // Show remove icon
-                    cameraIconDetail.style.display = 'none';     // Hide camera icon
+                    removeImageDetail.style.display = 'block';  // Hiển thị biểu tượng xóa
+                    cameraIconDetail.style.display = 'none';     // Ẩn biểu tượng camera
                 };
                 reader.readAsDataURL(file);
+            } else {
+                // Đặt lại ảnh xem trước nếu không có file nào được chọn
+                imagePreviewDetail.src = '@Url.Content("~/Image/null-image.png")';
+                removeImageDetail.style.display = 'none';
+                cameraIconDetail.style.display = 'block';
             }
         });
     });
 
-    // Handle image removal
-    document.querySelectorAll('.remove-image').forEach(function (removeButton) {
-        removeButton.addEventListener('click', function () {
-            const container = this.closest('.image-container');
-            const imagePreviewDetail = container.querySelector('.image-preview');
-            const fileInput = container.querySelector('input[type="file"]');
-            const cameraIconDetail = container.querySelector('.camera-icon');
-
-            fileInput.value = '';  // Clear the file input
-            imagePreviewDetail.src = '@Url.Content("~/Image/null-image.png")';  // Reset to default image
-            this.style.display = 'none';  // Hide remove icon
-            cameraIconDetail.style.display = 'block';  // Show camera icon
-        });
-    });
 </script>
+
 
 <style>
     .image-container {
