@@ -19,7 +19,11 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> SizeList(int? page)
         {
-
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             var client = _client.CreateClient();
             var url = "https://localhost:7172/api/ProductSize";
             var respons = await client.GetAsync(url);
@@ -39,7 +43,12 @@ namespace Shoe_Store.Controllers
         }
 
         public IActionResult Create() 
-        { 
+        {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             return View();
         }
 
@@ -62,6 +71,11 @@ namespace Shoe_Store.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             var client = _client.CreateClient();
             var url = $"https://localhost:7172/api/ProductSize/{id}";
             var respons = await client.GetAsync(url);

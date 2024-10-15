@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Data.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shoe_Store_HandleAPI.Controllers
 {
@@ -28,7 +29,7 @@ namespace Shoe_Store_HandleAPI.Controllers
         {
             if (productSize == null)
             {
-                return BadRequest("Category is null");
+                return BadRequest("lỗi cmnr");
             }
 
             _db.ProductSizes.Add(productSize);
@@ -43,7 +44,7 @@ namespace Shoe_Store_HandleAPI.Controllers
             var size = await _db.ProductSizes.FindAsync(id);
             if (size == null)
             {
-                return NotFound("size not found");
+                return NotFound("lỗi cmnr");
             }
             return Ok(size);
         }

@@ -199,6 +199,11 @@ namespace Data.Migrations
                     b.Property<int>("SanPhamId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");

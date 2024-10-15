@@ -20,6 +20,11 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> ProductList(int? page)
         {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             var httpClient = _httpClientFactory.CreateClient();
             var apiUrl = "https://localhost:7172/api/products";
             var response = await httpClient.GetAsync(apiUrl);
@@ -45,7 +50,11 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> CreateProduct()
         {
-            // Lấy tất cả category và productsize để hiển thị dưới dạng checkbox
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             var httpClient = _httpClientFactory.CreateClient();
             var categoryUrl = "https://localhost:7172/api/Category";
             var sizeUrl = "https://localhost:7172/api/ProductSize";
@@ -145,6 +154,11 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> UpdateProduct(int id)
         {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             var httpClient = _httpClientFactory.CreateClient();
 
             // Lấy thông tin sản phẩm

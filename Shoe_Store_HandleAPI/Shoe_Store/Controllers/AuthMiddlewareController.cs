@@ -2,6 +2,10 @@
 using Data.Models;
 using System.Text.Json;
 using System.Text;
+using NuGet.Protocol.Plugins;
+using System.Net;
+using Data.Migrations;
+using System.Net.Http.Headers;
 
 namespace Shoe_Store.Controllers
 {
@@ -13,6 +17,59 @@ namespace Shoe_Store.Controllers
         {
             _client = httpClientFactory;
         }
+
+        public IActionResult Login()
+        {
+            return View(new ModelLogin());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(ModelLogin model)
+        {
+            if (ModelState.IsValid)
+            {
+                var jsonContent = new StringContent(JsonSerializer.Serialize(model), Encoding.UTF8, "application/json");
+                var client = _client.CreateClient();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await client.PostAsync("https://localhost:7172/api/AuthMiddlewareAPI/LoginAPI", jsonContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<LoginResponse>(responseBody, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+                    if (result != null && !string.IsNullOrEmpty(result.Token))
+                    {
+                        HttpContext.Session.SetString("JWTToken", result.Token);
+                        HttpContext.Session.SetString("UserType", result.UserType);
+                        HttpContext.Session.SetInt32("ClientId", result.ClientId);
+                        if (result.UserType == "Client")
+                        {
+                            return RedirectToAction("ProductList", "User");
+                        }
+                        else if (result.UserType == "Admin")
+                        {
+                            return RedirectToAction("Dashboard", "Admin");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Failed to retrieve token or user type from the login response.");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid login credentials.");
+                }
+            }
+
+            return View(model);
+        }
+
+
 
         public IActionResult Register()
         {
@@ -40,55 +97,12 @@ namespace Shoe_Store.Controllers
                 return View(client);
             }
         }
-
-        public IActionResult Login()
-        {
-            return View(new ModelLogin());
-        }
-
-
-
-        [HttpPost]
-        public async Task<IActionResult> Login(ModelLogin model)
-        {
-            // Kiểm tra tính hợp lệ của model trước khi gửi yêu cầu đến API
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // Tạo đối tượng dữ liệu đăng nhập
-            var loginData = new { model.UserOrMail, Password = model.Password };
-            var json = JsonSerializer.Serialize(loginData);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var httpClient = _client.CreateClient();
-            var response = await httpClient.PostAsync("https://localhost:7172/api/AuthMiddlewareAPI/LoginAPI", content);
-
-            // Kiểm tra nếu phản hồi từ API thành công
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Chuyển hướng đến Dashboard sau khi đăng nhập thành công
-                return RedirectToAction("Dashboard", "Admin");
-
-            }
-            else
-            {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                ModelState.AddModelError(string.Empty, $"Lỗi đăng nhập: {errorContent}");
-            }
-
-            // Nếu có lỗi, trả về view và hiển thị lỗi
-            return View(model);
-        }
-
-
-        // Hàm gọi đăng xuất
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("JWTToken"); // Xóa token khỏi session
+            HttpContext.Session.Remove("JWTToken");
             return RedirectToAction("Login");
         }
     }
 }
+
+

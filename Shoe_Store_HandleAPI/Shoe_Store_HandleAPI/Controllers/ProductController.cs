@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shoe_Store_HandleAPI.Controllers
 {
@@ -52,30 +53,19 @@ namespace Shoe_Store_HandleAPI.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id,
-    [FromForm] Product updatedProduct,
-    [FromForm] List<int> categoryIds,
-    [FromForm] List<int> productSizeIds,
-    [FromForm] List<IFormFile> imageFiles)
+        public async Task<IActionResult> Update(int id,[FromForm] Product updatedProduct,[FromForm] List<int> categoryIds,[FromForm] List<int> productSizeIds,[FromForm] List<IFormFile> imageFiles)
         {
-            // Tìm sản phẩm theo ID
-            var product = await _db.Products
-                .Include(p => p.ImageDetails)
-                .Include(p => p.Categories)
-                .Include(p => p.productSizes)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null)
                 return NotFound();
 
-            // Cập nhật thông tin sản phẩm
             product.ProductName = updatedProduct.ProductName;
             product.Price = updatedProduct.Price;
             product.Description = updatedProduct.Description;
             product.Quantity = updatedProduct.Quantity;
             product.Color = updatedProduct.Color;
 
-            // Cập nhật ảnh chính
             if (updatedProduct.ImageFile != null && updatedProduct.ImageFile.Length > 0)
             {
                 if (!string.IsNullOrEmpty(product.Image))
@@ -87,7 +77,7 @@ namespace Shoe_Store_HandleAPI.Controllers
                 product.Image = await SaveImageFile(updatedProduct.ImageFile, "images");
             }
 
-            // Cập nhật danh mục
+            // Cập nhật category
             product.Categories.Clear();
             foreach (var categoryId in categoryIds)
             {
@@ -96,7 +86,7 @@ namespace Shoe_Store_HandleAPI.Controllers
                     product.Categories.Add(category);
             }
 
-            // Cập nhật kích thước sản phẩm
+            // Cập nhật size
             product.productSizes.Clear();
             foreach (var sizeId in productSizeIds)
             {
@@ -105,7 +95,7 @@ namespace Shoe_Store_HandleAPI.Controllers
                     product.productSizes.Add(size);
             }
 
-            // Xóa ảnh phụ cũ và thêm ảnh mới
+            // capaj nhập img detail
             if (imageFiles != null && imageFiles.Count > 0)
             {
                 // Xóa tất cả ảnh cũ
@@ -212,9 +202,6 @@ namespace Shoe_Store_HandleAPI.Controllers
             return CreatedAtAction(nameof(Update), new { id = product.Id }, product);
         }
 
-
-
-        
 
 
         [HttpDelete("{id}")]

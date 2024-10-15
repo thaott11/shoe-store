@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PagedList;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Shoe_Store.Controllers
@@ -16,6 +17,12 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> CategoryList(int? page)
         {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+
             var client = _client.CreateClient();
             var url = "https://localhost:7172/api/Category";
             var respons = await client.GetAsync(url);
@@ -28,14 +35,22 @@ namespace Shoe_Store.Controllers
                 var pagelist = category.ToPagedList(pagecount, pagesize);
                 return View(pagelist);
             }
-            else
-            {
-                return View(new List<Category>().ToPagedList(1, 5));
-            }
+
+            return View(new List<Category>().ToPagedList(1, 5));
         }
+
 
         public IActionResult CreateCategory()
         {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("JWTToken")))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             return View();
         }
 
@@ -60,6 +75,12 @@ namespace Shoe_Store.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
         {
+
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             // Lấy thông tin category bằng id
             var client = _client.CreateClient();
             var url = $"https://localhost:7172/api/Category/{id}";

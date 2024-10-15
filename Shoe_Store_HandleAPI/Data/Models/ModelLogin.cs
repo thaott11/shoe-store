@@ -8,5 +8,7 @@ namespace Data.Models
         public string UserOrMail { get; set; }
         [Required]
         public string Password { get; set; }
+
+        public int IdUserMail { get; set; }
     }
 }

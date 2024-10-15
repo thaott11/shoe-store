@@ -56,8 +56,8 @@
                                             <th>Price</th>
                                             <th>Description</th>
                                             <th>Image</th>
-                                            <th>Categories</th> 
-                                            <th>Sizes</th> 
+                                            <th>Categories</th>
+                                            <th>Sizes</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -69,7 +69,16 @@
                                                 <tr>
                                                     <td class="align-middle">@product.ProductName</td>
                                                     <td class="align-middle">@product.Price.ToString("C")</td>
-                                                    <td class="align-middle">@product.Description</td>
+                                                    <td class="align-middle product-description" title="@product.Description">
+                                                        @if (!string.IsNullOrEmpty(product.Description) && product.Description.Length > 20)
+                                                        {
+                                                            @product.Description.Substring(0, 20)
+                                                        }
+                                                        else
+                                                        {
+                                                            @product.Description
+                                                        }
+                                                    </td>
                                                     <td class="align-middle">
                                                         <img src="@Url.Action("GetImage", "Product", new { imageName = product.Image })" alt="@product.ProductName" style="width:100px; height:auto;" />
                                                     </td>

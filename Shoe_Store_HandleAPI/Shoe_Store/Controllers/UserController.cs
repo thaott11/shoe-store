@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PagedList;
@@ -18,6 +19,23 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> ProductList()
         {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+            var sessionData = HttpContext.Session.GetString("UserType");
+            var idsenssion = HttpContext.Session.GetInt32("ClientId"); 
+
+            if (sessionData == null || idsenssion == null)
+            {
+                ViewData["message"] = "Bạn chưa đăng nhập hoặc phiên đăng nhập hết hạn";
+            }
+            else
+            {
+                ViewData["message"] = $"Chào mừng {sessionData} ";
+                ViewData["message"] = $"Chào mừng {idsenssion} ";
+            }
             var httpClient = httpClientFactory.CreateClient();
             var apiUrl = "https://localhost:7172/api/products";
             var response = await httpClient.GetAsync(apiUrl);
@@ -67,6 +85,11 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> ProductDetail(int id)
         {
+            var token = HttpContext.Session.GetString("JWTToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
             var httpClient = httpClientFactory.CreateClient();
 
             // Lấy thông tin sản phẩm
@@ -81,7 +104,7 @@ namespace Shoe_Store.Controllers
             var jsonString = await response.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<Product>(jsonString);
 
-            // Lấy tất cả category và productsize để hiển thị dưới dạng checkbox
+            // Lấy tất cả category và productsize để hiển thị
             var categoryUrl = "https://localhost:7172/api/Category";
             var sizeUrl = "https://localhost:7172/api/ProductSize";
 
@@ -97,9 +120,7 @@ namespace Shoe_Store.Controllers
                 ViewBag.ProductSizes = JsonConvert.DeserializeObject<List<ProductSize>>(sizesJson);
             }
 
-
             return View(product);
         }
-
     }
 }

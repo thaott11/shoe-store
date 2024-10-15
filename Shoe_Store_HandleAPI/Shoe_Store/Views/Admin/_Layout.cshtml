@@ -13,6 +13,17 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.css"><!--end::Required Plugin(AdminLTE)--><!-- apexcharts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous"><!-- jsvectormap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css" integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4=" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../dist/css/adminlte.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </head> <!--end::Head--> <!--begin::Body-->
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -34,27 +45,25 @@
 
                     <li class="nav-item"> <a class="nav-link" href="#" data-lte-toggle="fullscreen"> <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i> <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none;"></i> </a> </li> <!--end::Fullscreen Toggle--> <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <img src="../../dist/assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image"> <span class="d-none d-md-inline">Alexander Pierce</span> </a>
+                        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center justify-content-center" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle" style="font-size: 20px;"></i>
+                        </a>
+
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
                             <li class="user-header text-bg-primary">
-                                <img src="../../dist/assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image">
+                                <i class="bi bi-person-circle" style="font-size: 50px;"></i>
+
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2023</small>
+                                    Hi Admin!
+                                    <small>Have a nice day</small>
                                 </p>
                             </li> <!--end::User Image--> <!--begin::Menu Body-->
-                            <li class="user-body">
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <div class="col-4 text-center"> <a href="#">Followers</a> </div>
-                                    <div class="col-4 text-center"> <a href="#">Sales</a> </div>
-                                    <div class="col-4 text-center"> <a href="#">Friends</a> </div>
-                                </div> <!--end::Row-->
-                            </li> <!--end::Menu Body--> <!--begin::Menu Footer-->
-                            <li class="user-footer"> <a href="#" class="btn btn-default btn-flat">Profile</a> <a href="#" class="btn btn-default btn-flat float-end">Sign out</a> </li> <!--end::Menu Footer-->
+                            <li class="user-footer text-center">
+                                <a asp-controller="AuthMiddleware" asp-action="Login" class="btn btn-default btn-flat float-end">Sign out</a>
+                            </li> <!--end::Menu Footer-->
                         </ul>
-                    </li> <!--end::User Menu Dropdown-->
+                    </li>
                 </ul> <!--end::End Navbar Links-->
             </div> <!--end::Container-->
         </nav> <!--end::Header--> <!--begin::Sidebar-->

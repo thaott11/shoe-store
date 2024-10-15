@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Data.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shoe_Store_HandleAPI.Controllers
 {
@@ -13,6 +14,13 @@ namespace Shoe_Store_HandleAPI.Controllers
         public ClientProfileController(ModelDbContext db)
         {
             _db = db;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var client = await _db.Clients.ToListAsync();
+            return Ok(client);
         }
 
         [HttpPut("{id}")]

@@ -1,8 +1,8 @@
 [
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.AuthMiddlewareAPIController",
-    "Method": "CheckSession",
-    "RelativePath": "api/AuthMiddlewareAPI/checkSession",
+    "Method": "CheckLogin",
+    "RelativePath": "api/AuthMiddlewareAPI/CheckLogin",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -49,6 +49,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.AuthMiddlewareAPIController",
+    "Method": "Getunauthorized",
+    "RelativePath": "api/AuthMiddlewareAPI/unauthorized",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -172,6 +182,16 @@
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.ClientProfileController",
+    "Method": "GetAll",
+    "RelativePath": "api/ClientProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.ClientProfileController",
     "Method": "UpdateClient",
     "RelativePath": "api/ClientProfile/{id}",
     "HttpMethod": "PUT",
@@ -216,6 +236,110 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
+    "Method": "GetAll",
+    "RelativePath": "api/OderApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/OderApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "order",
+        "Type": "Data.Models.Order",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
+    "Method": "GetOrderById",
+    "RelativePath": "api/OderApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Data.Models.Order",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
+    "Method": "getAll",
+    "RelativePath": "api/OrderDetailApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
+    "Method": "CreateOrderDetail",
+    "RelativePath": "api/OrderDetailApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderDetail",
+        "Type": "Data.Models.OrderDetail",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
+    "Method": "GetOrderDetailById",
+    "RelativePath": "api/OrderDetailApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Data.Models.OrderDetail",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",

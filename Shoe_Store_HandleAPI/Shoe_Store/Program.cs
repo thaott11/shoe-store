@@ -7,41 +7,45 @@ builder.Services.AddDbContext<ModelDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 
-
-
-
-
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(10); // Th?i gian h?t h?n session
-    options.Cookie.HttpOnly = true; // Cookie ch? có th? ???c truy c?p t? máy ch?
-    options.Cookie.IsEssential = true; // Cookie c?n thi?t cho ?ng d?ng
+    options.Cookie.Name = "Shoe_Store_Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.Cookie.SameSite = SameSiteMode.Strict; // S? d?ng Strict ?? tránh session cookie b? m?t
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Ch? cho phép cookie qua HTTPS
 });
 
+
+
+// C?u hình CORS cho phép k?t n?i v?i backend
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
-        builder => builder.AllowAnyOrigin()
+        builder => builder.WithOrigins("https://localhost:7279") // Ch? ??nh backend URL
                           .AllowAnyMethod()
-                          .AllowAnyHeader());
+                          .AllowAnyHeader()
+                          .AllowCredentials()); // Cho phép g?i cookie trong yêu c?u
 });
+
 var app = builder.Build();
-app.UseCors("AllowAll");
+
+app.UseCors("AllowAll"); // Áp d?ng chính sách CORS
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    // C?u hình HSTS cho production
     app.UseHsts();
 }
 
 app.UseStaticFiles();
 app.UseHttpsRedirection();
-
 app.UseRouting();
 app.UseSession(); // S? d?ng session
-app.UseAuthorization();
+app.UseAuthorization(); // S? d?ng authorization
 
 app.MapControllerRoute(
     name: "default",

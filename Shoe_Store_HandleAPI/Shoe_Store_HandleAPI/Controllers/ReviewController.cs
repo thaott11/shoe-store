@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Data.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shoe_Store_HandleAPI.Controllers
 {
