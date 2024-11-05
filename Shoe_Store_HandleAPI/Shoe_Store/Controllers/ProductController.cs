@@ -4,6 +4,8 @@ using PagedList;
 using Data.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using NuGet.Common;
+using System.Net;
 
 namespace Shoe_Store.Controllers
 {
@@ -20,15 +22,20 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> ProductList(int? page)
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
             var httpClient = _httpClientFactory.CreateClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+
             var apiUrl = "https://localhost:7172/api/products";
             var response = await httpClient.GetAsync(apiUrl);
-
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
@@ -47,21 +54,26 @@ namespace Shoe_Store.Controllers
             }
         }
 
-
+         
         public async Task<IActionResult> CreateProduct()
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
             var httpClient = _httpClientFactory.CreateClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+
             var categoryUrl = "https://localhost:7172/api/Category";
             var sizeUrl = "https://localhost:7172/api/ProductSize";
 
             var categoryResponse = await httpClient.GetAsync(categoryUrl);
             var sizeResponse = await httpClient.GetAsync(sizeUrl);
-
+            if (categoryResponse.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (categoryResponse.IsSuccessStatusCode && sizeResponse.IsSuccessStatusCode)
             {
                 var categoriesJson = await categoryResponse.Content.ReadAsStringAsync();
@@ -85,11 +97,13 @@ namespace Shoe_Store.Controllers
             if (ModelState.IsValid)
             {
                 var httpClient = _httpClientFactory.CreateClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+
+
                 var apiUrl = "https://localhost:7172/api/products";
 
                 using (var content = new MultipartFormDataContent())
                 {
-                    // Thêm ảnh chính
                     if (model.ImageFile != null)
                     {
                         var imageContent = new StreamContent(model.ImageFile.OpenReadStream());
@@ -97,7 +111,6 @@ namespace Shoe_Store.Controllers
                         content.Add(imageContent, "ImageFile", model.ImageFile.FileName);
                     }
 
-                    // Thêm ảnh phụ
                     if (imageFiles != null)
                     {
                         foreach (var file in imageFiles)
@@ -106,28 +119,25 @@ namespace Shoe_Store.Controllers
                             {
                                 var fileContent = new StreamContent(file.OpenReadStream());
                                 fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
-                                content.Add(fileContent, "imageFiles", file.FileName); 
+                                content.Add(fileContent, "imageFiles", file.FileName);
                             }
                         }
                     }
 
-                    // Thêm thông tin sản phẩm
                     content.Add(new StringContent(model.ProductName), "ProductName");
                     content.Add(new StringContent(model.Price.ToString()), "Price");
                     content.Add(new StringContent(model.Description), "Description");
                     content.Add(new StringContent(model.Quantity.ToString()), "Quantity");
                     content.Add(new StringContent(model.Color), "Color");
 
-                    // Thêm danh mục
                     if (category != null)
                     {
                         foreach (var categoryId in category)
                         {
-                            content.Add(new StringContent(categoryId), "categorys"); // Thay đổi thành "categorys"
+                            content.Add(new StringContent(categoryId), "categorys"); 
                         }
                     }
 
-                    // Thêm kích thước sản phẩm
                     if (productsize != null)
                     {
                         foreach (var sizeId in productsize)
@@ -154,17 +164,21 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> UpdateProduct(int id)
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
             var httpClient = _httpClientFactory.CreateClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
 
             // Lấy thông tin sản phẩm
             var apiUrl = $"https://localhost:7172/api/products/{id}";
             var response = await httpClient.GetAsync(apiUrl);
-
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (!response.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductList");
@@ -188,7 +202,7 @@ namespace Shoe_Store.Controllers
                 ViewBag.Categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
                 ViewBag.ProductSizes = JsonConvert.DeserializeObject<List<ProductSize>>(sizesJson);
             }
-            
+
 
             return View(product);
         }
@@ -201,17 +215,15 @@ namespace Shoe_Store.Controllers
             {
                 var httpClient = _httpClientFactory.CreateClient();
                 var apiUrl = $"https://localhost:7172/api/Products/{model.Id}";
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
 
                 using (var formData = new MultipartFormDataContent())
                 {
-                    // Thêm thông tin sản phẩm
                     formData.Add(new StringContent(model.ProductName), "ProductName");
                     formData.Add(new StringContent(model.Price.ToString()), "Price");
                     formData.Add(new StringContent(model.Description), "Description");
                     formData.Add(new StringContent(model.Quantity.ToString()), "Quantity");
                     formData.Add(new StringContent(model.Color), "Color");
-
-                    // Gửi category đã chọn
                     if (category != null && category.Count > 0)
                     {
                         foreach (var cat in category)
@@ -220,7 +232,6 @@ namespace Shoe_Store.Controllers
                         }
                     }
 
-                    // Gửi product size đã chọn
                     if (productsize != null && productsize.Count > 0)
                     {
                         foreach (var size in productsize)
@@ -229,7 +240,6 @@ namespace Shoe_Store.Controllers
                         }
                     }
 
-                    // Gửi các file hình ảnh
                     if (imageFiles != null && imageFiles.Count > 0)
                     {
                         foreach (var file in imageFiles)
@@ -240,7 +250,6 @@ namespace Shoe_Store.Controllers
                         }
                     }
 
-                    // Gửi yêu cầu PUT đến API
                     var response = await httpClient.PutAsync(apiUrl, formData);
 
                     if (response.IsSuccessStatusCode)
@@ -258,53 +267,66 @@ namespace Shoe_Store.Controllers
         }
 
 
-
-
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var httpClient = _httpClientFactory.CreateClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var apiUrl = $"https://localhost:7172/api/products/{id}";
-
             var response = await httpClient.DeleteAsync(apiUrl);
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (response.IsSuccessStatusCode)
             {
-                // Có thể thêm một thông báo thành công nếu cần thiết
                 TempData["SuccessMessage"] = "Product deleted successfully.";
             }
             else
             {
-                // Có thể thêm một thông báo lỗi nếu cần thiết
                 TempData["ErrorMessage"] = "Error deleting product: " + response.ReasonPhrase;
             }
 
             return RedirectToAction("ProductList");
         }
 
-        // Phương thức để lấy hình ảnh chính
         public async Task<IActionResult> GetImage(string imageName)
         {
-            // Gọi API để lấy file ảnh dựa vào tên hình ảnh
-            var response = await _httpClient.GetAsync($"https://localhost:7172/api/Products/GetImage/{imageName}");
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
 
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await client.GetAsync($"https://localhost:7172/api/Products/GetImage/{imageName}");
             if (response.IsSuccessStatusCode)
             {
                 var imageBytes = await response.Content.ReadAsByteArrayAsync();
                 var contentType = response.Content.Headers.ContentType?.ToString() ?? "image/jpeg";
-                return File(imageBytes, contentType); // Trả về hình ảnh dưới dạng FileContentResult
+                return File(imageBytes, contentType);
             }
-
-            return NotFound(); // Trả về lỗi nếu không có ảnh
+            return NotFound();
         }
+
         public async Task<IActionResult> GetImageDetail(string imageNamedetail)
         {
-            var response = await _httpClient.GetAsync($"https://localhost:7172/api/Products/GetImageDetail/{imageNamedetail}");
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.GetAsync($"https://localhost:7172/api/Products/GetImageDetail/{imageNamedetail}");
             if (response.IsSuccessStatusCode)
             {
                 var imageBytes = await response.Content.ReadAsByteArrayAsync();
-                var contentType = response.Content.Headers.ContentType?.ToString() ?? "Imgdetail/jpeg";
+                var contentType = response.Content.Headers.ContentType?.ToString() ?? "image/jpeg";
                 return File(imageBytes, contentType);
             }
-
             return NotFound();
         }
     }

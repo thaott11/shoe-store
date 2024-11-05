@@ -181,6 +181,16 @@
     ]
   },
   {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.CategoryController",
+    "Method": "GetAllClient",
+    "RelativePath": "api/Category/Client",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.ClientProfileController",
     "Method": "GetAll",
     "RelativePath": "api/ClientProfile",
@@ -235,6 +245,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.ClientProfileController",
+    "Method": "GetAllAdmin",
+    "RelativePath": "api/ClientProfile/Admin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -602,6 +622,26 @@
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",
+    "Method": "GetAllProductClient",
+    "RelativePath": "api/Products/client",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Data.Models.Product, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",
     "Method": "GetImage",
     "RelativePath": "api/Products/GetImage/{imageName}",
     "HttpMethod": "GET",
@@ -750,6 +790,16 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductSizeController",
+    "Method": "GetAllClient",
+    "RelativePath": "api/ProductSize/Client",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.WeatherForecastController",

@@ -1,51 +1,59 @@
 ﻿using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 using PagedList;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Shoe_Store.Controllers
 {
     public class ProductSizeController : Controller
     {
-        public readonly IHttpClientFactory _client;
+        private readonly IHttpClientFactory _client;
         private readonly ILogger<ProductSizeController> _logger;
+
         public ProductSizeController(IHttpClientFactory client, ILogger<ProductSizeController> logger)
         {
             _client = client;
-            _logger = logger; // Khởi tạo logger
+            _logger = logger;
         }
 
         public async Task<IActionResult> SizeList(int? page)
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
             var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var url = "https://localhost:7172/api/ProductSize";
-            var respons = await client.GetAsync(url);
-            if (respons.IsSuccessStatusCode)
+            var response = await client.GetAsync(url);
+            if (response.StatusCode == HttpStatusCode.Forbidden)
             {
-                var jsonstring = await respons.Content.ReadAsStringAsync();
-                var category = JsonConvert.DeserializeObject<List<ProductSize>>(jsonstring);
-                int pagesize = 5;
-                int pagecount = (page ?? 1);
-                var pagelist = category.ToPagedList(pagecount, pagesize);
-                return View(pagelist);
+                return RedirectToAction("Forbidden", "Error");
+            }
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var productSizes = JsonConvert.DeserializeObject<List<ProductSize>>(jsonString);
+                int pageSize = 5;
+                int pageNumber = page ?? 1;
+                var pageList = productSizes.ToPagedList(pageNumber, pageSize);
+                return View(pageList);
             }
             else
             {
-                return View(new List<Category>().ToPagedList(1, 5));
+                return View(new List<ProductSize>().ToPagedList(1, 5));
             }
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
@@ -56,11 +64,15 @@ namespace Shoe_Store.Controllers
         public async Task<IActionResult> Create(ProductSize productSize)
         {
             var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var url = "https://localhost:7172/api/ProductSize";
             var jsonString = JsonConvert.SerializeObject(productSize);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(url, content);
-
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("SizeList");
@@ -71,51 +83,59 @@ namespace Shoe_Store.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            if (Request.Cookies["Shoe_Store_Cookie"] == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
+
             var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var url = $"https://localhost:7172/api/ProductSize/{id}";
-            var respons = await client.GetAsync(url);
-            if(respons.IsSuccessStatusCode)
+            var response = await client.GetAsync(url);
+            if (response.StatusCode == HttpStatusCode.Forbidden)
             {
-                var jsonstring = await respons.Content.ReadAsStringAsync();
-                var size = JsonConvert.DeserializeObject<ProductSize>(jsonstring);
+                return RedirectToAction("Forbidden", "Error");
+            }
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var size = JsonConvert.DeserializeObject<ProductSize>(jsonString);
                 return View(size);
             }
-            return StatusCode((int)respons.StatusCode, respons.ReasonPhrase);
+            return StatusCode((int)response.StatusCode, response.ReasonPhrase);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Update(ProductSize model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model); // Trả về view cùng lỗi nếu có
-            }
 
             var client = _client.CreateClient();
-            var url = $"https://localhost:7172/api/ProductSize/{model.SizeId}";
-            var jsonContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-            var response = await client.PutAsync(url, jsonContent); 
-
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+            var jsonConvert = JsonConvert.SerializeObject(model);
+            var content = new StringContent(jsonConvert, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"https://localhost:7172/api/ProductSize/{model.SizeId}", content);
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("SizeList"); 
+                return RedirectToAction("SizeList");
             }
-            else
-            {
-                return StatusCode((int)response.StatusCode, response.ReasonPhrase);
-            }
+            return NotFound();
         }
 
         public async Task<IActionResult> Delete(int id)
         {
             var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var url = $"https://localhost:7172/api/ProductSize/{id}";
             var response = await client.DeleteAsync(url);
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("SizeList");

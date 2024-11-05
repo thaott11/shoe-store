@@ -7,7 +7,6 @@ namespace Data.Models
     {
         [Key]
         public int Id { get; set; }
-        public int Quantity { get; set; }
         public decimal Price { get; set; }
 
         [MaxLength(3, ErrorMessage = "Size cannot exceed 3 characters.")]

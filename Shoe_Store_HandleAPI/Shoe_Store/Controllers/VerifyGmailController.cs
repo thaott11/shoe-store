@@ -36,25 +36,22 @@ namespace Shoe_Store.Controllers
                 _context.Clients.Update(client);
                 await _context.SaveChangesAsync();
 
-                // Automatically log in the user
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, client.Id.ToString()),
                     new Claim(ClaimTypes.Email, client.Email),
-                    // Add more claims if necessary
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 var authProperties = new AuthenticationProperties
                 {
-                    IsPersistent = true, // Keep the user logged in
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30) // Set expiration time
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30) 
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                // Redirect to ListProduct after successful login
                 return RedirectToAction("ListProduct", "User");
             }
             catch (Exception ex)

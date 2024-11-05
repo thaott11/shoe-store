@@ -35,8 +35,6 @@ namespace Shoe_Store_HandleAPI.Controllers
             return Unauthorized();
         }
 
-
-
         [HttpPost("registerAPI")]
         public async Task<IActionResult> RegisterClient([FromBody] Client client)
         {
@@ -54,7 +52,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 
                 await _emailService.SendEmail(client.Email, client.Id);
 
-                var token = GenerateJwtToken(client.Email, "Client", client.Id); // Thêm ID vào token
+                var token = GenerateJwtToken(client.Email, "Client", client.Id);
 
                 return Ok(new
                 {
@@ -73,77 +71,62 @@ namespace Shoe_Store_HandleAPI.Controllers
         {
             try
             {
-                // Tìm Client
                 var client = await _db.Clients.FirstOrDefaultAsync(x => x.Email == login.UserOrMail);
                 if (client != null && BCrypt.Net.BCrypt.Verify(login.Password, client.Password))
                 {
-                    // Tạo token cho Client
                     var token = GenerateJwtToken(client.Email, "Client", client.Id);
 
-                    var claims = new List<Claim>
+                    Response.Cookies.Append("Shoe_Store_Cookie", token, new CookieOptions
                     {
-                        new Claim(ClaimTypes.Name, client.Email),
-                        new Claim("UserType", "Client"),
-                        new Claim("ClientId", client.Id.ToString()) // Lưu ClientId vào Claims
-                    };
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict,
+                        MaxAge = TimeSpan.FromMinutes(60) 
+                    });
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-
-                    // Trả về thông tin UserType, Token và ClientId
-                    return Ok(new { UserType = "Client", Token = token, ClientId = client.Id });
+                    return Ok(new { Token = token, UserId = client.Id, UserName = client.Name, UserType = "Client" });
                 }
-
                 var admin = await _db.admins.FirstOrDefaultAsync(x => x.UserName == login.UserOrMail);
                 if (admin != null && admin.Password == admin.Password)
                 {
                     var token = GenerateJwtToken(admin.UserName, "Admin", admin.Id);
 
-                    var claims = new List<Claim>
+                    Response.Cookies.Append("Shoe_Store_Cookie", token, new CookieOptions
                     {
-                        new Claim(ClaimTypes.Name, admin.UserName),
-                        new Claim("UserType", "Admin"),
-                        new Claim("UserId", admin.Id.ToString())
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), new AuthenticationProperties
-                    {
-                        IsPersistent = true, // Tùy chọn lưu cookie lâu dài hoặc không
-                        ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30)
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict,
+                        MaxAge = TimeSpan.FromMinutes(60)
                     });
 
-
-                    return Ok(new { UserType = "Admin", Token = token });
+                    return Ok(new { Token = token, UserId = admin.Id, UserName = admin.UserName, UserType = "Admin" });
                 }
 
-                return Unauthorized(new { Error = "Sai thông tin đăng nhập." });
+                return Unauthorized(new { Error = "Tài khoản hoặc mật khẩu không đúng." });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Error = ex.Message });
+                return BadRequest(new { Error = "Đã xảy ra lỗi trong quá trình đăng nhập: " + ex.Message });
             }
         }
+
 
         private string GenerateJwtToken(string email, string userType, int userId)
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, email),
-            new Claim("UserType", userType),
-            new Claim("UserId", userId.ToString())
-        };
-
+                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(ClaimTypes.Role, userType),
+                new Claim("UserType", userType),
+                new Claim("UserId", userId.ToString())
+            };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
             var token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -151,27 +134,31 @@ namespace Shoe_Store_HandleAPI.Controllers
 
 
 
+
+
         [HttpGet("CheckLogin")]
         [Authorize]
         public IActionResult CheckLogin()
         {
-            var userId = User.FindFirst("UserId")?.Value;
-            var userType = User.FindFirst("UserType")?.Value;
-
-            if (userId != null && userType != null)
+            if (User.Identity.IsAuthenticated)
             {
+                var userId = User.FindFirst("UserId")?.Value;
+                var userType = User.FindFirst("UserType")?.Value;
+
                 return Ok(new { UserId = userId, UserType = userType });
             }
-
             return Unauthorized(new { Error = "User is not logged in." });
         }
+
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            // Đăng xuất bằng cách xóa cookie
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Response.Cookies.Delete("Shoe_Store_Cookie");
+
             return Ok(new { Message = "Đăng xuất thành công." });
         }
+
     }
 }

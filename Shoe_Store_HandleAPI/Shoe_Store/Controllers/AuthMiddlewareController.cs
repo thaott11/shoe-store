@@ -2,10 +2,15 @@
 using Data.Models;
 using System.Text.Json;
 using System.Text;
+using System.Net.Http.Json;
 using NuGet.Protocol.Plugins;
 using System.Net;
-using Data.Migrations;
 using System.Net.Http.Headers;
+using System.Linq;
+using NuGet.Common;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace Shoe_Store.Controllers
 {
@@ -26,49 +31,62 @@ namespace Shoe_Store.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(ModelLogin model)
         {
-            if (ModelState.IsValid)
-            {
-                var jsonContent = new StringContent(JsonSerializer.Serialize(model), Encoding.UTF8, "application/json");
-                var client = _client.CreateClient();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var response = await client.PostAsync("https://localhost:7172/api/AuthMiddlewareAPI/LoginAPI", jsonContent);
+            if (!ModelState.IsValid) return View(model);
 
-                if (response.IsSuccessStatusCode)
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7172/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var response = await client.PostAsJsonAsync("https://localhost:7172/api/AuthMiddlewareAPI/LoginAPI", model);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+
+                if (result != null)
                 {
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    var result = JsonSerializer.Deserialize<LoginResponse>(responseBody, new JsonSerializerOptions
+                    var token = result.Token;
+                    var userName = result.UserName;
+                    var userType = result.UserType;
+                    var userId = result.UserId;
+
+                    Response.Cookies.Append("Shoe_Store_Cookie", token, new CookieOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict,
+                        Expires = DateTimeOffset.UtcNow.AddHours(1)
+                    });
+                    Response.Cookies.Append("UserType", userType, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict,
+                        Expires = DateTimeOffset.UtcNow.AddHours(1)
+                    });
+                    Response.Cookies.Append("UserId", userId.ToString(), new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict,
+                        Expires = DateTimeOffset.UtcNow.AddHours(1)
                     });
 
-                    if (result != null && !string.IsNullOrEmpty(result.Token))
+                    if (userType == "Client")
                     {
-                        HttpContext.Session.SetString("JWTToken", result.Token);
-                        HttpContext.Session.SetString("UserType", result.UserType);
-                        HttpContext.Session.SetInt32("ClientId", result.ClientId);
-                        if (result.UserType == "Client")
-                        {
-                            return RedirectToAction("ProductList", "User");
-                        }
-                        else if (result.UserType == "Admin")
-                        {
-                            return RedirectToAction("Dashboard", "Admin");
-                        }
+                        return RedirectToAction("ProductList", "User");
                     }
-                    else
+                    else if (userType == "Admin")
                     {
-                        ModelState.AddModelError("", "Failed to retrieve token or user type from the login response.");
+                        return RedirectToAction("Dashboard", "Admin");
                     }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid login credentials.");
-                }
+                ModelState.AddModelError(string.Empty, "Lỗi token");
+                return View(model);
             }
-
+            ModelState.AddModelError(string.Empty, "Lỗi cmnr.");
             return View(model);
         }
-
 
 
         public IActionResult Register()
@@ -79,10 +97,8 @@ namespace Shoe_Store.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(Client client)
         {
-            var json = JsonSerializer.Serialize(client);
+            var json = JsonConvert.SerializeObject(client);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            // Sử dụng HttpClient để gửi yêu cầu tới API đăng ký
             var httpClient = _client.CreateClient();
             var response = await httpClient.PostAsync("https://localhost:7172/api/AuthMiddlewareAPI/registerAPI", content);
 
@@ -97,11 +113,26 @@ namespace Shoe_Store.Controllers
                 return View(client);
             }
         }
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Remove("JWTToken");
-            return RedirectToAction("Login");
+            var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+            var response = await client.PostAsync("https://localhost:7172/api/AuthMiddlewareAPI/logout", null);
+            if (response.IsSuccessStatusCode)
+            {
+                Response.Cookies.Delete("Shoe_Store_Cookie");
+                Response.Cookies.Delete("UserId");
+                Response.Cookies.Delete("UserType");
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Failed to log out.");
+                return NotFound();
+            }
         }
+
+        
     }
 }
 

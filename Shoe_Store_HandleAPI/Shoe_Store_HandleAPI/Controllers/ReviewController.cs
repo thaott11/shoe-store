@@ -7,6 +7,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReviewController : ControllerBase
     {
         public readonly ModelDbContext _db;

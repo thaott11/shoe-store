@@ -85,7 +85,7 @@
 
                 <div class="mt-4 text-center mt-5">
                     <input type="hidden" id="selectedSize" name="SelectedSize" value="" />
-                    <a asp-controller="Order" asp-action="CreateOrder" asp-route-productId="@Model.Id" asp-route-size="" class="btn btn-dark btn-lg w-75 rounded-pill" onclick="return submitOrder()">Add to Cart</a>
+                    <a method="post" asp-controller="Order" asp-action="CreateOrder" asp-route-productId="@Model.Id" asp-route-size="" class="btn btn-dark btn-lg w-75 rounded-pill" onclick="return submitOrder()">Add to Cart</a>
                 </div>
 
                 <div class="mt-4 text-center mb-5">

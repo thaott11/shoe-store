@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class OderApiController : ControllerBase
     {
         private readonly ModelDbContext _db;
@@ -16,6 +18,8 @@ namespace Shoe_Store_HandleAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "ClientPolicy")]
+
         public async Task<IActionResult> GetAll()
         {
             var Order = _db.Orders.ToListAsync();
@@ -23,6 +27,8 @@ namespace Shoe_Store_HandleAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "ClientPolicy")]
+
         public async Task<IActionResult> CreateOrder([FromBody] Order order)
         {
             if (!ModelState.IsValid)

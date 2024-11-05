@@ -14,6 +14,8 @@ namespace Shoe_Store_HandleAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class ProductsController : ControllerBase
     {
         private readonly ModelDbContext _db;
@@ -24,7 +26,23 @@ namespace Shoe_Store_HandleAPI.Controllers
             _env = webHostEnvironment;
         }
 
+        [HttpGet("client")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllProductClient()
+        {
+            var products = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).ToListAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+
+            var json = JsonSerializer.Serialize(products, options);
+            return Ok(json);
+        }
+
         [HttpGet]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
         {
             var products = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).ToListAsync();
@@ -41,6 +59,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 
 
         [HttpGet("{id}")]
+        
         public async Task<ActionResult<Product>> UpdateProduct(int id)
         {
             var product = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).FirstOrDefaultAsync(p => p.Id == id);
@@ -53,6 +72,8 @@ namespace Shoe_Store_HandleAPI.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
+
         public async Task<IActionResult> Update(int id,[FromForm] Product updatedProduct,[FromForm] List<int> categoryIds,[FromForm] List<int> productSizeIds,[FromForm] List<IFormFile> imageFiles)
         {
             var product = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).FirstOrDefaultAsync(p => p.Id == id);
@@ -77,7 +98,6 @@ namespace Shoe_Store_HandleAPI.Controllers
                 product.Image = await SaveImageFile(updatedProduct.ImageFile, "images");
             }
 
-            // Cập nhật category
             product.Categories.Clear();
             foreach (var categoryId in categoryIds)
             {
@@ -86,7 +106,6 @@ namespace Shoe_Store_HandleAPI.Controllers
                     product.Categories.Add(category);
             }
 
-            // Cập nhật size
             product.productSizes.Clear();
             foreach (var sizeId in productSizeIds)
             {
@@ -95,18 +114,14 @@ namespace Shoe_Store_HandleAPI.Controllers
                     product.productSizes.Add(size);
             }
 
-            // capaj nhập img detail
             if (imageFiles != null && imageFiles.Count > 0)
             {
-                // Xóa tất cả ảnh cũ
                 foreach (var imageDetail in product.ImageDetails)
                 {
                     var oldImagePath = Path.Combine(_env.WebRootPath, "Imgdetail", imageDetail.ImageUrl);
                     if (System.IO.File.Exists(oldImagePath))
                         System.IO.File.Delete(oldImagePath);
                 }
-
-                // Xóa ảnh phụ cũ khỏi cơ sở dữ liệu
                 _db.ImageDetails.RemoveRange(product.ImageDetails);
                 product.ImageDetails.Clear();
 
@@ -124,7 +139,6 @@ namespace Shoe_Store_HandleAPI.Controllers
             }
             else
             {
-                // Nếu không có ảnh mới, xóa tất cả ảnh phụ
                 foreach (var imageDetail in product.ImageDetails)
                 {
                     var oldImagePath = Path.Combine(_env.WebRootPath, "Imgdetail", imageDetail.ImageUrl);
@@ -134,8 +148,6 @@ namespace Shoe_Store_HandleAPI.Controllers
                 _db.ImageDetails.RemoveRange(product.ImageDetails);
                 product.ImageDetails.Clear();
             }
-
-            // Lưu tất cả thay đổi vào cơ sở dữ liệu
             await _db.SaveChangesAsync();
             return Ok(product);
         }
@@ -143,6 +155,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 
 
         [HttpPost]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<Product>> AddProduct([FromForm] Product product, [FromForm] List<int> categorys,
     [FromForm] List<int> productsize, [FromForm] List<IFormFile> imageFiles)
         {
@@ -150,14 +163,11 @@ namespace Shoe_Store_HandleAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            // Lưu ảnh chính
             if (product.ImageFile != null && product.ImageFile.Length > 0)
             {
-                product.Image = await SaveImageFile(product.ImageFile, "images"); // Chỉ lưu tên file
+                product.Image = await SaveImageFile(product.ImageFile, "images");
             }
 
-            // Thêm categories với product
             foreach (var categoryId in categorys)
             {
                 var category = await _db.Categories.FindAsync(categoryId);
@@ -166,8 +176,6 @@ namespace Shoe_Store_HandleAPI.Controllers
                     product.Categories.Add(category);
                 }
             }
-
-            // Thêm product sizes với product
             foreach (var productsizess in productsize)
             {
                 var pro = await _db.ProductSizes.FindAsync(productsizess);
@@ -179,8 +187,6 @@ namespace Shoe_Store_HandleAPI.Controllers
 
             await _db.Products.AddAsync(product);
             await _db.SaveChangesAsync();
-
-            // Lưu ảnh phụ
             if (imageFiles != null && imageFiles.Count > 0)
             {
                 foreach (var imageFile in imageFiles)
@@ -190,7 +196,7 @@ namespace Shoe_Store_HandleAPI.Controllers
                         var imageUrl = await SaveImageFile(imageFile, "Imgdetail");
                         var imageDetail = new ImageDetail
                         {
-                            ImageUrl = imageUrl, // Chỉ lưu tên file
+                            ImageUrl = imageUrl, 
                             ProductId = product.Id
                         };
                         await _db.ImageDetails.AddAsync(imageDetail);
@@ -198,47 +204,38 @@ namespace Shoe_Store_HandleAPI.Controllers
                 }
                 await _db.SaveChangesAsync();
             }
-
             return CreatedAtAction(nameof(Update), new { id = product.Id }, product);
         }
 
 
-
         [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _db.Products.Include(p => p.ImageDetails).Include(p => p.Categories).Include(p => p.productSizes).FirstOrDefaultAsync(p => p.Id == id);
             if (product == null)
                 return NotFound();
-
-            // Xóa ảnh chính
             if (!string.IsNullOrEmpty(product.Image))
             {
                 var mainImagePath = Path.Combine(_env.WebRootPath, product.Image.TrimStart('/'));
                 if (System.IO.File.Exists(mainImagePath))
                     System.IO.File.Delete(mainImagePath);
             }
-
-            // Xóa ảnh phụ
             foreach (var imageDetail in product.ImageDetails)
             {
                 var imagePath = Path.Combine(_env.WebRootPath, imageDetail.ImageUrl.TrimStart('/'));
                 if (System.IO.File.Exists(imagePath))
                     System.IO.File.Delete(imagePath);
             }
-
-            // Xóa các chi tiết hình ảnh và danh mục
             _db.ImageDetails.RemoveRange(product.ImageDetails);
             product.Categories.Clear();
             product.productSizes.Clear();
 
-            // Xóa sản phẩm
             _db.Products.Remove(product);
             await _db.SaveChangesAsync();
 
             return NoContent();
         }
-
         private async Task<string> SaveImageFile(IFormFile imageFile, string folderName)
         {
             var imageDirectory = Path.Combine(_env.WebRootPath, folderName);
@@ -257,8 +254,6 @@ namespace Shoe_Store_HandleAPI.Controllers
 
             return fileName; 
         }
-
-
 
         [HttpGet("GetImage/{imageName}")]
         public async Task<IActionResult> GetImage(string imageName)
@@ -289,7 +284,6 @@ namespace Shoe_Store_HandleAPI.Controllers
             var mimeType = GetMimeType(imagePath);
             return new FileStreamResult(imageFileStream, mimeType);
         }
-
         private string GetMimeType(string fileName)
         {
             var extension = Path.GetExtension(fileName).ToLowerInvariant();

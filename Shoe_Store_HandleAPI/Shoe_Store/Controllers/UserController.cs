@@ -4,40 +4,43 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PagedList;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Shoe_Store.Controllers
 {
     public class UserController : Controller
     {
-        public readonly IHttpClientFactory httpClientFactory;
-        public readonly HttpClient _client;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _client;
+
         public UserController(IHttpClientFactory httpClientFactory, HttpClient client)
         {
-            this.httpClientFactory = httpClientFactory;
-            this._client = client;
+            _httpClientFactory = httpClientFactory;
+            _client = client;
         }
 
         public async Task<IActionResult> ProductList()
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
-            var sessionData = HttpContext.Session.GetString("UserType");
-            var idsenssion = HttpContext.Session.GetInt32("ClientId"); 
 
-            if (sessionData == null || idsenssion == null)
+            var userTypeCookie = Request.Cookies["UserType"];
+            var clientIdCookie = Request.Cookies["UserId"];
+
+            if (userTypeCookie == null || clientIdCookie == null)
             {
-                ViewData["message"] = "Bạn chưa đăng nhập hoặc phiên đăng nhập hết hạn";
+                return RedirectToAction("Login", "AuthMiddleware");
             }
-            else
-            {
-                ViewData["message"] = $"Chào mừng {sessionData} ";
-                ViewData["message"] = $"Chào mừng {idsenssion} ";
-            }
-            var httpClient = httpClientFactory.CreateClient();
-            var apiUrl = "https://localhost:7172/api/products";
+
+            ViewData["message"] = $"Chào mừng {userTypeCookie} - ID Khách hàng: {clientIdCookie}";
+
+            var httpClient = _httpClientFactory.CreateClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var apiUrl = "https://localhost:7172/api/products/client";
             var response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -54,45 +57,62 @@ namespace Shoe_Store.Controllers
             }
         }
 
-        // Phương thức để lấy hình ảnh chính
+
         public async Task<IActionResult> GetImage(string imageName)
         {
-            // Gọi API để lấy file ảnh dựa vào tên hình ảnh
-            var response = await _client.GetAsync($"https://localhost:7172/api/Products/GetImage/{imageName}");
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.GetAsync($"https://localhost:7172/api/Products/GetImage/{imageName}");
 
             if (response.IsSuccessStatusCode)
             {
                 var imageBytes = await response.Content.ReadAsByteArrayAsync();
                 var contentType = response.Content.Headers.ContentType?.ToString() ?? "image/jpeg";
-                return File(imageBytes, contentType); // Trả về hình ảnh dưới dạng FileContentResult
-            }
-
-            return NotFound(); // Trả về lỗi nếu không có ảnh
-        }
-        public async Task<IActionResult> GetImageDetail(string imageNamedetail)
-        {
-            var response = await _client.GetAsync($"https://localhost:7172/api/Products/GetImageDetail/{imageNamedetail}");
-            if (response.IsSuccessStatusCode)
-            {
-                var imageBytes = await response.Content.ReadAsByteArrayAsync();
-                var contentType = response.Content.Headers.ContentType?.ToString() ?? "Imgdetail/jpeg";
                 return File(imageBytes, contentType);
             }
 
             return NotFound();
         }
 
-
-        public async Task<IActionResult> ProductDetail(int id)
+        public async Task<IActionResult> GetImageDetail(string imageNamedetail)
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
-            var httpClient = httpClientFactory.CreateClient();
 
-            // Lấy thông tin sản phẩm
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.GetAsync($"https://localhost:7172/api/Products/GetImageDetail/{imageNamedetail}");
+            if (response.IsSuccessStatusCode)
+            {
+                var imageBytes = await response.Content.ReadAsByteArrayAsync();
+                var contentType = response.Content.Headers.ContentType?.ToString() ?? "image/jpeg";
+                return File(imageBytes, contentType);
+            }
+
+            return NotFound();
+        }
+
+        public async Task<IActionResult> ProductDetail(int id)
+        {
+            if (Request.Cookies["Shoe_Store_Cookie"] == null)
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+
+            var httpClient = _httpClientFactory.CreateClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+
             var apiUrl = $"https://localhost:7172/api/products/{id}";
             var response = await httpClient.GetAsync(apiUrl);
 
@@ -103,10 +123,8 @@ namespace Shoe_Store.Controllers
 
             var jsonString = await response.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<Product>(jsonString);
-
-            // Lấy tất cả category và productsize để hiển thị
-            var categoryUrl = "https://localhost:7172/api/Category";
-            var sizeUrl = "https://localhost:7172/api/ProductSize";
+            var categoryUrl = "https://localhost:7172/api/Category/Client";
+            var sizeUrl = "https://localhost:7172/api/ProductSize/Client";
 
             var categoryResponse = await httpClient.GetAsync(categoryUrl);
             var sizeResponse = await httpClient.GetAsync(sizeUrl);

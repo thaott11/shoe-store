@@ -8,6 +8,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductSizeController : ControllerBase
     {
         private readonly ModelDbContext _db;
@@ -16,8 +17,16 @@ namespace Shoe_Store_HandleAPI.Controllers
         {
             _db = db;
         }
+        [HttpGet("Client")]
+        public async Task<IActionResult> GetAllClient()
+        {
+            var productSizes = await _db.ProductSizes.ToListAsync();
+            return Ok(productSizes);
+        }
 
         [HttpGet]
+        [Authorize(Policy = "AdminPolicy")]
+
         public async Task<IActionResult> GetAll()
         {
             var productSizes = await _db.ProductSizes.ToListAsync();
@@ -25,6 +34,7 @@ namespace Shoe_Store_HandleAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<ProductSize>> Create([FromBody] ProductSize productSize)
         {
             if (productSize == null)
@@ -50,6 +60,7 @@ namespace Shoe_Store_HandleAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<ProductSize>> Update(int id, [FromBody] ProductSize productSize)
         {
             var update = await _db.ProductSizes.FindAsync(id);
@@ -64,8 +75,8 @@ namespace Shoe_Store_HandleAPI.Controllers
         }
 
 
-        // DELETE: api/ProductSize/{id}
         [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<ProductSize>> Delete(int id)
         {
             var delete = await _db.ProductSizes.FindAsync(id);

@@ -8,6 +8,8 @@ namespace Shoe_Store_HandleAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    
     public class CategoryController : ControllerBase
     {
         private readonly ModelDbContext _db;
@@ -17,14 +19,25 @@ namespace Shoe_Store_HandleAPI.Controllers
             _db = db;
         }
 
+        
+
         [HttpGet]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAll()
         {
             var categories = await _db.Categories.ToListAsync();
-            return Ok(categories); 
+            return Ok(categories);
+        }
+
+        [HttpGet("Client")]
+        public async Task<IActionResult> GetAllClient()
+        {
+            var categories = await _db.Categories.ToListAsync();
+            return Ok(categories);
         }
 
         [HttpPost]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<Category>> Create([FromBody] Category category)
         {
             if (category == null)
@@ -52,6 +65,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<Category>> Update(int id, [FromBody] Category category)
         {
             var update = await _db.Categories.FindAsync(id);
@@ -66,6 +80,7 @@ namespace Shoe_Store_HandleAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<Category>> Delete(int id)
         {
             var delete = await _db.Categories.FindAsync(id);

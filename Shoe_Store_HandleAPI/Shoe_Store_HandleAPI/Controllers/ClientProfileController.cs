@@ -7,6 +7,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClientProfileController : ControllerBase
     {
         private readonly ModelDbContext _db;
@@ -18,6 +19,15 @@ namespace Shoe_Store_HandleAPI.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
+        {
+            var client = await _db.Clients.ToListAsync();
+            return Ok(client);
+        }
+
+        [HttpGet("Admin")]
+        [Authorize(Policy = "AdminPolicy")]
+
+        public async Task<IActionResult> GetAllAdmin()
         {
             var client = await _db.Clients.ToListAsync();
             return Ok(client);

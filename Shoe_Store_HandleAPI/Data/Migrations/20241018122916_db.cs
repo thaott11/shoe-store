@@ -237,8 +237,8 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Size = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     SanPhamId = table.Column<int>(type: "int", nullable: false)
                 },

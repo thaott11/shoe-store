@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+jfIlNVkj/lyYInQhsZdLrd5fycITP25/0sXce9yMSc=",
+  "Hash": "2C3aJ6WWF7t1o9kHpRmQlCksbu2oej9+j31gTnuPY2Y=",
   "Source": "Shoe_Store",
   "BasePath": "_content/Shoe_Store",
   "Mode": "Default",
@@ -1457,12 +1457,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\Image\\banner1.jpeg",
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\Image\\banner1.jpg",
       "SourceId": "Shoe_Store",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\",
       "BasePath": "_content/Shoe_Store",
-      "RelativePath": "Image/banner1.jpeg",
+      "RelativePath": "Image/banner1.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1471,15 +1471,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Image\\banner1.jpeg"
+      "OriginalItemSpec": "wwwroot\\Image\\banner1.jpg"
     },
     {
-      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\Image\\banner2.jpeg",
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\Image\\banner2.jpg",
       "SourceId": "Shoe_Store",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\",
       "BasePath": "_content/Shoe_Store",
-      "RelativePath": "Image/banner2.jpeg",
+      "RelativePath": "Image/banner2.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1488,15 +1488,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Image\\banner2.jpeg"
+      "OriginalItemSpec": "wwwroot\\Image\\banner2.jpg"
     },
     {
-      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\Image\\banner3.jpeg",
+      "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\Image\\banner3.jpg",
       "SourceId": "Shoe_Store",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\",
       "BasePath": "_content/Shoe_Store",
-      "RelativePath": "Image/banner3.jpeg",
+      "RelativePath": "Image/banner3.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1505,7 +1505,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Image\\banner3.jpeg"
+      "OriginalItemSpec": "wwwroot\\Image\\banner3.jpg"
     },
     {
       "Identity": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\wwwroot\\Image\\Logo.png",

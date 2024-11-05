@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PagedList;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -17,40 +19,43 @@ namespace Shoe_Store.Controllers
 
         public async Task<IActionResult> CategoryList(int? page)
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
 
             var client = _client.CreateClient();
-            var url = "https://localhost:7172/api/Category";
-            var respons = await client.GetAsync(url);
-            if (respons.IsSuccessStatusCode)
-            {
-                var jsonstring = await respons.Content.ReadAsStringAsync();
-                var category = JsonConvert.DeserializeObject<List<Category>>(jsonstring);
-                int pagesize = 5;
-                int pagecount = (page ?? 1);
-                var pagelist = category.ToPagedList(pagecount, pagesize);
-                return View(pagelist);
-            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
+
+            var url = "https://localhost:7172/api/Category";
+            var response = await client.GetAsync(url);
+            if (response.StatusCode == HttpStatusCode.Forbidden) 
+            {
+                return RedirectToAction("Forbidden", "Error"); 
+            }
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var categories = JsonConvert.DeserializeObject<List<Category>>(jsonString);
+                int pageSize = 5;
+                int pageNumber = page ?? 1;
+                var pageList = categories.ToPagedList(pageNumber, pageSize);
+                return View(pageList);
+            }
+            
             return View(new List<Category>().ToPagedList(1, 5));
         }
 
-
         public IActionResult CreateCategory()
         {
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("JWTToken")))
-            {
-                return RedirectToAction("Login", "AuthMiddleware");
-            }
+
             return View();
         }
 
@@ -58,11 +63,15 @@ namespace Shoe_Store.Controllers
         public async Task<IActionResult> CreateCategory(Category category)
         {
             var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var url = "https://localhost:7172/api/Category";
             var jsonString = JsonConvert.SerializeObject(category);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(url, content);
-
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("CategoryList");
@@ -71,26 +80,28 @@ namespace Shoe_Store.Controllers
         }
 
 
-        // GET: Category/UpdateCategory/5
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
         {
 
-            var token = HttpContext.Session.GetString("JWTToken");
-            if (string.IsNullOrEmpty(token))
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
-            // Lấy thông tin category bằng id
             var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var url = $"https://localhost:7172/api/Category/{id}";
             var response = await client.GetAsync(url);
-
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
                 var category = JsonConvert.DeserializeObject<Category>(jsonString);
-                return View(category); // Trả về view UpdateCategory cùng dữ liệu
+                return View(category);
             }
             else
             {
@@ -98,37 +109,35 @@ namespace Shoe_Store.Controllers
             }
         }
 
-        // POST: Category/UpdateCategory
-        [HttpPost]
         public async Task<IActionResult> UpdateCategory(Category model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model); // Trả về view cùng lỗi nếu có
-            }
-
             var client = _client.CreateClient();
-            var url = $"https://localhost:7172/api/Category/{model.Id}";
-            var jsonContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-
-            var response = await client.PutAsync(url, jsonContent); // Gửi PUT request để cập nhật category
-
-            if (response.IsSuccessStatusCode)
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+            var jsonconvert = JsonConvert.SerializeObject(model);
+            var content = new StringContent(jsonconvert, Encoding.UTF8 , "application/json");
+            var respones = await client.PutAsync($"https://localhost:7172/api/Category/{model.Id}", content);
+            if (respones.StatusCode == HttpStatusCode.Forbidden)
             {
-                return RedirectToAction("CategoryList"); // Chuyển hướng sau khi cập nhật thành công
+                return RedirectToAction("Forbidden", "Error");
             }
-            else
+            if (respones.IsSuccessStatusCode)
             {
-                return StatusCode((int)response.StatusCode, response.ReasonPhrase);
+                return RedirectToAction("CategoryList");
             }
+            return NotFound();
         }
 
 
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var client = _client.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
             var url = $"https://localhost:7172/api/Category/{id}";
             var respons = await client.DeleteAsync(url);
+            if (respons.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
             if (respons.IsSuccessStatusCode)
             {
                 return RedirectToAction("CategoryList");
@@ -137,5 +146,7 @@ namespace Shoe_Store.Controllers
             return View(respons);
 
         }
+
+
     }
 }
