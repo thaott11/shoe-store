@@ -98,10 +98,7 @@ namespace Shoe_Store.Controllers
             {
                 var httpClient = _httpClientFactory.CreateClient();
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
-
-
                 var apiUrl = "https://localhost:7172/api/products";
-
                 using (var content = new MultipartFormDataContent())
                 {
                     if (model.ImageFile != null)
@@ -172,7 +169,6 @@ namespace Shoe_Store.Controllers
             var httpClient = _httpClientFactory.CreateClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
 
-            // Lấy thông tin sản phẩm
             var apiUrl = $"https://localhost:7172/api/products/{id}";
             var response = await httpClient.GetAsync(apiUrl);
             if (response.StatusCode == HttpStatusCode.Forbidden)
@@ -186,11 +182,8 @@ namespace Shoe_Store.Controllers
 
             var jsonString = await response.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<Product>(jsonString);
-
-            // Lấy tất cả category và productsize để hiển thị dưới dạng checkbox
             var categoryUrl = "https://localhost:7172/api/Category";
             var sizeUrl = "https://localhost:7172/api/ProductSize";
-
             var categoryResponse = await httpClient.GetAsync(categoryUrl);
             var sizeResponse = await httpClient.GetAsync(sizeUrl);
 
@@ -202,8 +195,6 @@ namespace Shoe_Store.Controllers
                 ViewBag.Categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
                 ViewBag.ProductSizes = JsonConvert.DeserializeObject<List<ProductSize>>(sizesJson);
             }
-
-
             return View(product);
         }
 

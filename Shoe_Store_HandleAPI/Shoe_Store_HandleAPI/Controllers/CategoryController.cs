@@ -19,8 +19,6 @@ namespace Shoe_Store_HandleAPI.Controllers
             _db = db;
         }
 
-        
-
         [HttpGet]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> GetAll()

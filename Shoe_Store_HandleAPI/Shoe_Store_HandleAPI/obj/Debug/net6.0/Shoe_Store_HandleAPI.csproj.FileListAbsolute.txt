@@ -75,3 +75,4 @@ D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.e
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.dll
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Data.pdb
 D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\obj\Debug\net6.0\Shoe_Store_HandleAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\FPT\Project\Shoe_Store_HandleAPI\Shoe_Store_HandleAPI\bin\Debug\net6.0\Newtonsoft.Json.dll

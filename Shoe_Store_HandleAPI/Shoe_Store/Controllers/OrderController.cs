@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -10,34 +11,22 @@ namespace Shoe_Store.Controllers
     public class OrderController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-
         public OrderController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CreateOrder(int productId, string size)
+        [HttpPost]
+        public async Task<IActionResult> CreateOrder(int ProductId, string SelectedSize)
         {
-            var userTypeCookie = Request.Cookies["UserType"];
-            var clientIdCookie = Request.Cookies["UserId"];
-
             var token = Request.Cookies["Shoe_Store_Cookie"];
             if (token == null)
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
-
-            if (productId <= 0)
-            {
-                ModelState.AddModelError(string.Empty, "Invalid product ID.");
-                return View();
-            }
-
             var httpClient = _httpClientFactory.CreateClient();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
-
-            var apiUrl = $"https://localhost:7172/api/products/{productId}";
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var apiUrl = $"https://localhost:7172/api/products/{ProductId}";
             var response = await httpClient.GetAsync(apiUrl);
             if (response.StatusCode == HttpStatusCode.Forbidden)
             {
@@ -45,115 +34,41 @@ namespace Shoe_Store.Controllers
             }
             if (!response.IsSuccessStatusCode)
             {
+                ModelState.AddModelError(string.Empty, "Error retrieving product information.");
                 return View();
             }
-
             var productJson = await response.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<Product>(productJson);
             if (product == null || product.Quantity <= 0 || product.Price <= 0)
             {
-                ModelState.AddModelError(string.Empty, "Product information is invalid.");
+                ModelState.AddModelError(string.Empty, "không có sản phẩm.");
                 return View();
             }
-            if (!int.TryParse(clientIdCookie, out int clientId))
+            var orderDetail = new OrderDetail
             {
-                ModelState.AddModelError(string.Empty, "Invalid Client ID.");
-                return View();
-            }
-
-            var order = new Order
-            {
-                ClientId = clientId, 
-                OrderName = userTypeCookie,
-                Total = product.Price,
-                Date = DateTime.Now,
-                orderDetails = new List<OrderDetail>
-        {
-            new OrderDetail
-            {
-                SanPhamId = productId,
+                SanPhamId = ProductId,
                 Price = product.Price,
-                Size = size,
-                product = product
-            }
-        }
+                Size = SelectedSize,
+                Quantity = 1 
             };
+            var jsonString = JsonConvert.SerializeObject(orderDetail);
+            var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            var orderApiUrl = $"https://localhost:7172/api/OderApi/createOrUpdate";
+            var orderResponse = await httpClient.PostAsync(orderApiUrl, content);
 
-            ViewBag.ProductName = product.ProductName;
-            ViewBag.Price = product.Price;
-            ViewBag.ClientId = clientIdCookie;  
-            ViewBag.OrderName = userTypeCookie;
-            ViewBag.Size = size;
-            ViewBag.ImageUrl = product.Image;
-
-            return View(order);
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> CreateOrder(Order order, OrderDetail orderDetail)
-        {
-            var token = Request.Cookies["Shoe_Store_Cookie"];
-            if (token == null)
+            if (orderResponse.IsSuccessStatusCode)
             {
-                return RedirectToAction("Login", "AuthMiddleware");
+                var responseContent = await orderResponse.Content.ReadAsStringAsync();
+                var updatedOrder = JsonConvert.DeserializeObject<Order>(responseContent);
+                return RedirectToAction("ListOrder", "User");
             }
-
-
-            var clientIdCookie = Request.Cookies["UserId"];
-            if (clientIdCookie == null)
+            else
             {
-                return RedirectToAction("Login", "AuthMiddleware");
-            }
-
-            if (!int.TryParse(clientIdCookie, out int clientId))
-            {
-                ModelState.AddModelError(string.Empty, "Invalid Client ID.");
+                ModelState.AddModelError(string.Empty, "lỗi nhé. không cập nhập được order.");
                 return View();
             }
-            order.ClientId = clientId;
-
-            try
-            {
-                var httpClient = _httpClientFactory.CreateClient();
-                var apiOrderUrl = "https://localhost:7172/api/OderApi";
-                var apiOrderDetailUrl = "https://localhost:7172/api/OrderDetailApi";
-
-                var jsonOrder = JsonConvert.SerializeObject(order);
-                var jsonOrderDetail = JsonConvert.SerializeObject(orderDetail);
-                var contentOrder = new StringContent(jsonOrder, Encoding.UTF8, "application/json");
-                var contentOrderDetail = new StringContent(jsonOrderDetail, Encoding.UTF8, "application/json");
-
-                var responseOrder = await httpClient.PostAsync(apiOrderUrl, contentOrder);
-                if (responseOrder.StatusCode == HttpStatusCode.Forbidden)
-                {
-                    return RedirectToAction("Forbidden", "Error");
-                }
-                if (responseOrder.IsSuccessStatusCode)
-                {
-                    var responseOrderDetail = await httpClient.PostAsync(apiOrderDetailUrl, contentOrderDetail);
-
-                    if (responseOrderDetail.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Success");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Failed to create order details.");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Failed to create order.");
-                }
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "An error occurred while creating the order.");
-            }
-
-            return View(order);
         }
+
 
         public async Task<IActionResult> GetImage(string imageName)
         {
@@ -162,7 +77,6 @@ namespace Shoe_Store.Controllers
             {
                 return RedirectToAction("Login", "AuthMiddleware");
             }
-
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await client.GetAsync($"https://localhost:7172/api/Products/GetImage/{imageName}");
@@ -173,6 +87,26 @@ namespace Shoe_Store.Controllers
                 return File(imageBytes, contentType);
             }
             return NotFound();
+        }
+
+
+        public async Task<IActionResult> DeleteOrderDetail(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
+            var url = $"https://localhost:7172/api/OrderDetailApi/{id}";
+            var respons = await client.DeleteAsync(url);
+            if (respons.StatusCode == HttpStatusCode.Forbidden)
+            {
+                return RedirectToAction("Forbidden", "Error");
+            }
+            if (respons.IsSuccessStatusCode)
+            {
+                return RedirectToAction("ListOrder", "User");
+            }
+            TempData["ErrorMessage"] = "Error deleting OrderDetail: " + respons.ReasonPhrase;
+            return View(respons);
+
         }
     }
 }

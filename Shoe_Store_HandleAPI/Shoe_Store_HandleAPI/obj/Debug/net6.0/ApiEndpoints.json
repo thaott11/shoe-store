@@ -269,22 +269,6 @@
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
-    "Method": "CreateOrder",
-    "RelativePath": "api/OderApi",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "order",
-        "Type": "Data.Models.Order",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
     "Method": "GetOrderById",
     "RelativePath": "api/OderApi/{id}",
     "HttpMethod": "GET",
@@ -310,9 +294,41 @@
     ]
   },
   {
-    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
-    "Method": "getAll",
-    "RelativePath": "api/OrderDetailApi",
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
+    "Method": "CreateOrUpdateOrder",
+    "RelativePath": "api/OderApi/createOrUpdate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newOrderDetail",
+        "Type": "Data.Models.OrderDetail",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
+    "Method": "GetOrderDetailById",
+    "RelativePath": "api/OderApi/details/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OderApiController",
+    "Method": "GetOrdersByUser",
+    "RelativePath": "api/OderApi/user/orders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -321,19 +337,50 @@
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
-    "Method": "CreateOrderDetail",
-    "RelativePath": "api/OrderDetailApi",
-    "HttpMethod": "POST",
+    "Method": "Delete",
+    "RelativePath": "api/OrderDetailApi/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "orderDetail",
-        "Type": "Data.Models.OrderDetail",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
+    "Method": "Update",
+    "RelativePath": "api/OrderDetailApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedDetail",
+        "Type": "Data.Models.OrderDetail",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Data.Models.OrderDetail",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
@@ -360,6 +407,32 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.PaymentController",
+    "Method": "CreatePaymentUrlVnpay",
+    "RelativePath": "api/Payment/CreatePaymentUrl",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Data.VNPay.PaymentInformationModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Shoe_Store_HandleAPI.Controllers.PaymentController",
+    "Method": "PaymentCallbackVnpay",
+    "RelativePath": "api/Payment/PaymentCallback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.ProductsController",

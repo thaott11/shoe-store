@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AkGUepKkiVhVzMee0v+zt13ZEG7WEPUUxTI0eOz+d6YsHeY80y+c872kJjXNzrlmb/vUXBLSK6oQHysdQvz0fw==",
+  "dgSpecHash": "N9B8vOaQUwtNcJmxiT733q5rcMgP06Bj3V9zYHLcgJQp8zMxrfNvbcwNktuOIN4iHPCNriDL3RNAqFJYpaWUog==",
   "success": true,
   "projectFilePath": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,7 @@
     "C:\\Users\\Thaott\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Thaott\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Thaott\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Thaott\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Thaott\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Thaott\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Thaott\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

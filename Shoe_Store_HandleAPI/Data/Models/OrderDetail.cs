@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using System.Text.Json.Serialization;
 
 namespace Data.Models
 {
@@ -11,9 +12,11 @@ namespace Data.Models
 
         [MaxLength(3, ErrorMessage = "Size cannot exceed 3 characters.")]
         public string Size { get; set; }
+        public int Quantity { get; set; }
         public int OrderId { get; set; }
-        public Order order { get; set; }
+        [JsonIgnore]
+        public Order? order { get; set; }
         public int SanPhamId { get; set; }
-        public Product product { get; set; }
+        public Product? product { get; set; }
     }
 }

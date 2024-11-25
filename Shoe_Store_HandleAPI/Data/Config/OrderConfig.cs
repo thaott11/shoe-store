@@ -10,9 +10,6 @@ namespace Data.Config
         {
             builder.HasKey(o => o.Id);
 
-            builder.Property(o => o.CodeOrder)
-                .IsRequired();
-
             builder.Property(o => o.OrderName)
                 .IsRequired()
                 .HasMaxLength(50);

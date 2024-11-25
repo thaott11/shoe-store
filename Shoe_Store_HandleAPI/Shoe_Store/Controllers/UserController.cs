@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NuGet.Common;
 using PagedList;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Shoe_Store.Controllers
 {
@@ -107,7 +110,7 @@ namespace Shoe_Store.Controllers
         {
             if (Request.Cookies["Shoe_Store_Cookie"] == null)
             {
-                return RedirectToAction("Login", "AuthMiddleware");
+                return RedirectToAction("ckjfhfikf");
             }
 
             var httpClient = _httpClientFactory.CreateClient();
@@ -139,6 +142,101 @@ namespace Shoe_Store.Controllers
             }
 
             return View(product);
+        }
+
+        public async Task<int> GetOrderCountByClientId()
+        {
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var apiUrl = "https://localhost:7172/api/OderApi/ToltalOrder/Client";
+            var response = await client.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var orderCount = JsonConvert.DeserializeObject<int>(jsonString);
+
+                Console.WriteLine($"API returned order count: {orderCount}");
+                return orderCount;
+            }
+            Console.WriteLine("Failed to get order count from API");
+            return 0;
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> _Layout()
+        {
+            var clientIdCookie = Request.Cookies["UserId"];
+
+            if (string.IsNullOrEmpty(clientIdCookie))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            int orderDetailCount = 0;
+
+            try
+            {
+                var response = await client.GetAsync("api/OderApi/ToltalOrder/Client");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    orderDetailCount = int.Parse(responseString);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching order detail count: {ex.Message}");
+            }
+
+            ViewBag.OrderDetailCount = orderDetailCount;
+
+            return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ListOrder()
+        {
+            var userName = Request.Cookies["UserName"];
+            var token = Request.Cookies["Shoe_Store_Cookie"];
+            var clientIdCookie = Request.Cookies["UserId"];
+            if (clientIdCookie == null || string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "AuthMiddleware");
+            }
+            if (!int.TryParse(clientIdCookie, out int clientId))
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Client ID.");
+                return View();
+            }
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = await httpClient.GetAsync($"https://localhost:7172/api/OderApi/user/orders");
+                var jsonstring = await response.Content.ReadAsStringAsync();
+                var content = new StringContent(jsonstring, Encoding.UTF8, "application/json");
+                var orders = JsonConvert.DeserializeObject<List<Order>>(jsonstring);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return NotFound();
+                }
+                ViewBag.UserName = userName;
+                return View(orders);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                ModelState.AddModelError(string.Empty, $"An error occurred: {ex.Message}");
+                return View();
+            }
         }
     }
 }

@@ -71,6 +71,13 @@ namespace Shoe_Store.Controllers
                         SameSite = SameSiteMode.Strict,
                         Expires = DateTimeOffset.UtcNow.AddHours(1)
                     });
+                    Response.Cookies.Append("UserName", userName, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict,
+                        Expires = DateTimeOffset.UtcNow.AddHours(1)
+                    });
 
                     if (userType == "Client")
                     {

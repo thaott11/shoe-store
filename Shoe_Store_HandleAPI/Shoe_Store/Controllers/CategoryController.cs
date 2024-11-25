@@ -98,7 +98,7 @@ namespace Shoe_Store.Controllers
                 return RedirectToAction("Forbidden", "Error");
             }
             if (response.IsSuccessStatusCode)
-            {
+            {   
                 var jsonString = await response.Content.ReadAsStringAsync();
                 var category = JsonConvert.DeserializeObject<Category>(jsonString);
                 return View(category);

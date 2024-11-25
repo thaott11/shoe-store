@@ -3,15 +3,19 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Shoe_Store_HandleAPI.Middleware;
 using Shoe_Store_HandleAPI.Service;
+using Shoe_Store_HandleAPI.Service.IVNPay;
+using Shoe_Store_HandleAPI.Service.VnPay;
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// C?u hình d?ch v?
 builder.Services.AddTransient<EmailService>();
 builder.Services.AddDbContext<ModelDbContext>();
-
+// C?u hình Authentication v?i JWT
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -55,9 +59,15 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
     });
 
+builder.Services.AddScoped<IVnPayService, VnPayService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Logging.AddConsole();
+
 var app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -65,7 +75,9 @@ if (app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseRouting();
+app.UseAuthentication(); 
+app.UseAuthorization();  
 app.MapControllers();
+
 app.Run();

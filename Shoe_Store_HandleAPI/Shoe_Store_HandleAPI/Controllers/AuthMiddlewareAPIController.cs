@@ -106,7 +106,7 @@ namespace Shoe_Store_HandleAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Error = "Đã xảy ra lỗi trong quá trình đăng nhập: " + ex.Message });
+                return BadRequest(new { Error = "lỗi đăng nhập: " + ex.Message });
             }
         }
 
@@ -147,7 +147,7 @@ namespace Shoe_Store_HandleAPI.Controllers
 
                 return Ok(new { UserId = userId, UserType = userType });
             }
-            return Unauthorized(new { Error = "User is not logged in." });
+            return Unauthorized(new { Error = "login thành công" });
         }
 
 

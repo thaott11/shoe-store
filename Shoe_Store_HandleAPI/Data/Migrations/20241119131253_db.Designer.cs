@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ModelDbContext))]
-    [Migration("20241018122916_db")]
+    [Migration("20241119131253_db")]
     partial class db
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,6 +99,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IdOrder")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -159,10 +162,6 @@ namespace Data.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CodeOrder")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -176,7 +175,8 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientId")
+                        .IsUnique();
 
                     b.ToTable("Orders");
                 });
@@ -194,6 +194,9 @@ namespace Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<int>("SanPhamId")
                         .HasColumnType("int");
@@ -380,8 +383,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.Order", b =>
                 {
                     b.HasOne("Data.Models.Client", "client")
-                        .WithMany("orders")
-                        .HasForeignKey("ClientId")
+                        .WithOne("orders")
+                        .HasForeignKey("Data.Models.Order", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

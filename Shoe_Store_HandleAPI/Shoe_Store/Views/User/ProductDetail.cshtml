@@ -32,17 +32,14 @@
                 </button>
             </div>
 
-            <!-- Additional Images Section -->
             <div class="mt-3 d-flex">
                 @if (Model.ImageDetails != null && Model.ImageDetails.Any())
                 {
-                    // Hiển thị ảnh chính
                     <div class="me-2">
                         <img src="@Url.Action("GetImage", "User", new { imageName = Model.Image })" class="img-thumbnail" style="width: 80px; height: 80px;" alt="Main Image"
                              onmouseover="changeMainImage('@Url.Action("GetImage", "User", new { imageName = Model.Image })')" />
                     </div>
 
-                    // Hiển thị ảnh phụ
                     foreach (var imageDetail in Model.ImageDetails)
                     {
                         <div class="me-2">
@@ -54,44 +51,46 @@
             </div>
         </div>
 
-        <!-- Product Details -->
         <div class="col-md-6">
             <h3>@Model.ProductName</h3>
+            <form asp-controller="Order" asp-action="CreateOrder" id="addToCartForm" method="post">
             <h4 class="">@Model.Price.ToString("N0") $</h4>
-
-            <div class="size-selection mt-4 col-md-9">
-                <h6>Select Size</h6>
-                <div class="d-flex flex-wrap">
-                    <div>
-                        @if (ViewBag.ProductSizes != null)
-                        {
-                            foreach (var size in ViewBag.ProductSizes)
+                <div class="size-selection mt-4 col-md-9">
+                    <h6>Select Size</h6>
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            @if (ViewBag.ProductSizes != null)
                             {
-                                var isAvailable = Model.productSizes != null && Model.productSizes.Any(s => s.SizeId == size.SizeId);
-                                <button class="btn m-1 @(isAvailable ? "btn-outline-secondary" : "btn-secondary disabled")"
-                                @(isAvailable ? "" : "disabled")
-                                        style="opacity: @(isAvailable ? 1 : 0.3);"
-                                        onclick="setSelectedSize('@size.Size', this)">
-                                    @size.Size
-                                </button>
+                                foreach (var size in ViewBag.ProductSizes)
+                                {
+                                    var isAvailable = Model.productSizes != null && Model.productSizes.Any(s => s.SizeId == size.SizeId);
+                                    <button type="button" class="btn m-1 @(isAvailable ? "btn-outline-secondary" : "btn-secondary disabled")"
+                                    @(isAvailable ? "" : "disabled")
+                                            style="opacity: @(isAvailable ? 1 : 0.3);"
+                                            onclick="setSelectedSize('@size.Size', this)">
+                                        @size.Size
+                                    </button>
+                                }
                             }
-                        }
-                        else
-                        {
-                            <p>No product sizes available.</p>
-                        }
+                            else
+                            {
+                                <p>No product sizes available.</p>
+                            }
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-4 text-center mt-5">
-                    <input type="hidden" id="selectedSize" name="SelectedSize" value="" />
-                    <a method="post" asp-controller="Order" asp-action="CreateOrder" asp-route-productId="@Model.Id" asp-route-size="" class="btn btn-dark btn-lg w-75 rounded-pill" onclick="return submitOrder()">Add to Cart</a>
-                </div>
+                <input type="hidden" id="selectedSize" name="SelectedSize" value="" />
+                <input type="hidden" name="ProductId" value="@Model.Id" />
 
+
+                <div class="mt-4 text-center mt-5">
+                    <button type="submit" class="btn btn-dark btn-lg w-75 rounded-pill">Add to Cart</button>
+                </div>
                 <div class="mt-4 text-center mb-5">
                     <button class="btn btn-light btn-outline-dark btn-lg w-75 rounded-pill">Favourite</button>
                 </div>
-            </div>
+            </form>
 
             <div class="col-md-10 mt-5">
                 <p>@Model.Description</p>
@@ -108,27 +107,19 @@
         document.getElementById('mainImage').src = imageUrl;
         currentImage = imageUrl;
     }
-    function resetMainImage(mainImageUrl) {
-        if (!currentImage) {
-            document.getElementById('mainImage').src = mainImageUrl;
-        }
-    }
-    let selectedSize = '';
 
     function setSelectedSize(size, button) {
-        selectedSize = size; // Lưu kích thước đã chọn vào biến
+        document.getElementById('selectedSize').value = size;
         document.querySelectorAll('.size-selection .btn').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active'); // Đánh dấu kích thước đã chọn
+        button.classList.add('active');
     }
 
-    function submitOrder() {
+    function validateForm() {
+        const selectedSize = document.getElementById('selectedSize').value;
         if (!selectedSize) {
-            alert('Please select a size!');
-            return false; // Ngăn chặn chuyển hướng nếu chưa chọn kích thước
+            alert('Please select a size before adding to cart.');
+            return false;
         }
-
-        const link = document.querySelector('a[asp-controller="Order"]');
-        link.setAttribute('asp-route-size', selectedSize); // Gán kích thước vào đường dẫn
-        return true; // Cho phép chuyển hướng
+        return true;
     }
 </script>

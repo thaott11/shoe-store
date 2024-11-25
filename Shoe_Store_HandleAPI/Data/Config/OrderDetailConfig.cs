@@ -10,6 +10,10 @@ namespace Data.Config
         {
             builder.HasKey(od => od.Id);
 
+            builder.Property(od => od.Price)
+                .HasColumnType("decimal(18,2)")  
+                .IsRequired(); 
+
             builder.HasOne(od => od.order)
                 .WithMany(o => o.orderDetails)
                 .HasForeignKey(od => od.OrderId);
