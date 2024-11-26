@@ -353,7 +353,7 @@
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",
-    "Method": "Update",
+    "Method": "UpdateQuantity",
     "RelativePath": "api/OrderDetailApi/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -365,22 +365,12 @@
         "IsRequired": true
       },
       {
-        "Name": "updatedDetail",
-        "Type": "Data.Models.OrderDetail",
+        "Name": "request",
+        "Type": "Data.DTO.OrderdetailUpdate",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "Data.Models.OrderDetail",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Shoe_Store_HandleAPI.Controllers.OrderDetailApiController",

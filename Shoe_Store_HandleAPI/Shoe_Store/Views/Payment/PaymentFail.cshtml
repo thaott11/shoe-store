@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Thanh toán thất bại";
+}
+
+<h2>Thanh toán thất bại</h2>
+<p>@ViewBag.Message</p>
+
+@if (ViewBag.Error != null)
+{
+    <h4>Lỗi chi tiết:</h4>
+    <pre>@ViewBag.Error</pre>
+}

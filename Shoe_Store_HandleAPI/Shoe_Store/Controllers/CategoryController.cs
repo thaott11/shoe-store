@@ -109,6 +109,7 @@ namespace Shoe_Store.Controllers
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> UpdateCategory(Category model)
         {
             var client = _client.CreateClient();

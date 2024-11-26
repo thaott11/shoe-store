@@ -69,7 +69,6 @@ namespace Shoe_Store.Controllers
             }
         }
 
-
         public async Task<IActionResult> GetImage(string imageName)
         {
             var token = Request.Cookies["Shoe_Store_Cookie"];
@@ -90,23 +89,6 @@ namespace Shoe_Store.Controllers
         }
 
 
-        public async Task<IActionResult> DeleteOrderDetail(int id)
-        {
-            var client = _httpClientFactory.CreateClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Request.Cookies["Shoe_Store_Cookie"]);
-            var url = $"https://localhost:7172/api/OrderDetailApi/{id}";
-            var respons = await client.DeleteAsync(url);
-            if (respons.StatusCode == HttpStatusCode.Forbidden)
-            {
-                return RedirectToAction("Forbidden", "Error");
-            }
-            if (respons.IsSuccessStatusCode)
-            {
-                return RedirectToAction("ListOrder", "User");
-            }
-            TempData["ErrorMessage"] = "Error deleting OrderDetail: " + respons.ReasonPhrase;
-            return View(respons);
-
-        }
+        
     }
 }

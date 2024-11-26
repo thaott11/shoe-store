@@ -3,108 +3,16 @@
   "WorkspaceRootPath": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|d:\\fpt\\project\\shoe_store_handleapi\\shoe_store_handleapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|d:\\fpt\\project\\shoe_store_handleapi\\shoe_store\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|d:\\fpt\\project\\shoe_store_handleapi\\shoe_store\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\user\\listorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\user\\listorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|d:\\fpt\\project\\shoe_store_handleapi\\shoe_store_handleapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\controllers\\orderdetailapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\controllers\\orderdetailapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\controllers\\oderapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\controllers\\oderapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|d:\\fpt\\project\\shoe_store_handleapi\\data\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|solutionrelative:data\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|d:\\fpt\\project\\shoe_store_handleapi\\data\\models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|solutionrelative:data\\models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|d:\\fpt\\project\\shoe_store_handleapi\\data\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|solutionrelative:data\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\product\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\product\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\user\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\user\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\order\\listorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\order\\listorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|d:\\fpt\\project\\shoe_store_handleapi\\shoe_store_handleapi\\service\\vnpay\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\service\\vnpay\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\service\\ivnpay\\ivnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\service\\ivnpay\\ivnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\data\\vnpay\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|solutionrelative:data\\vnpay\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store_handleapi\\libraryes\\vnpay_library.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FDC51A7-9358-47C3-A49D-D213982A1BEB}|Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI.csproj|solutionrelative:shoe_store_handleapi\\libraryes\\vnpay_library.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\data\\vnpay\\paymentinformationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D53BB853-5B98-43B9-8926-0C8BABD03C13}|Data\\Data.csproj|solutionrelative:data\\vnpay\\paymentinformationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\user\\productdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\user\\productdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\order\\createorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\order\\createorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\user\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\user\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|D:\\FPT\\Project\\Shoe_Store_HandleAPI\\shoe_store\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|d:\\fpt\\project\\shoe_store_handleapi\\shoe_store\\views\\product\\updateproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0531FC90-FD6C-40B6-8371-4E255C89AD70}|Shoe_Store\\Shoe_Store.csproj|solutionrelative:shoe_store\\views\\product\\updateproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -138,337 +46,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "Shoe_Store\\Controllers\\CategoryController.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "Shoe_Store\\Controllers\\CategoryController.cs",
-              "ViewState": "AQIAAHoAAAAAAAAAAAAswIMAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T13:03:04.125Z",
+              "DocumentIndex": 2,
+              "Title": "UpdateProduct.cshtml",
+              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Product\\UpdateProduct.cshtml",
+              "RelativeDocumentMoniker": "Shoe_Store\\Views\\Product\\UpdateProduct.cshtml",
+              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Product\\UpdateProduct.cshtml",
+              "RelativeToolTip": "Shoe_Store\\Views\\Product\\UpdateProduct.cshtml",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAEwAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T09:16:11.861Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Controllers\\CategoryController.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Controllers\\CategoryController.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAswE8AAAAcAAAA",
+              "DocumentIndex": 1,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Shoe_Store\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Shoe_Store\\Controllers\\ProductController.cs",
+              "ViewState": "AQIAAOsAAAAAAAAAAAAWwPwAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T12:45:38.378Z",
+              "WhenOpened": "2024-11-26T08:30:25.457Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "Shoe_Store\\Controllers\\OrderController.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "Shoe_Store\\Controllers\\OrderController.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAiwGMAAAANAAAA",
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Shoe_Store_HandleAPI\\Controllers\\ProductController.cs",
+              "ViewState": "AQIAAHYAAAAAAAAAAAAAAJAAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T01:51:18.269Z",
+              "WhenOpened": "2024-11-26T09:08:10.472Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ListOrder.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\ListOrder.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\User\\ListOrder.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\ListOrder.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\User\\ListOrder.cshtml",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAAEUAAABVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T02:25:03.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Shoe_Store\\Controllers\\UserController.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Shoe_Store\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAOcAAAAAAAAAAAAmwPIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T02:23:20.038Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OrderDetailApiController.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\OrderDetailApiController.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Controllers\\OrderDetailApiController.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\OrderDetailApiController.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Controllers\\OrderDetailApiController.cs",
-              "ViewState": "AQIAADUAAAAAAAAAAAAiwEUAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T03:34:32.963Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "Data\\Models\\Product.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\Models\\Product.cs",
-              "RelativeToolTip": "Data\\Models\\Product.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAA+wBQAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T12:50:36.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "OrderDetail.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\Models\\OrderDetail.cs",
-              "RelativeDocumentMoniker": "Data\\Models\\OrderDetail.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\Models\\OrderDetail.cs",
-              "RelativeToolTip": "Data\\Models\\OrderDetail.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T12:49:44.358Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Order.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\Models\\Order.cs",
-              "RelativeDocumentMoniker": "Data\\Models\\Order.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\Models\\Order.cs",
-              "RelativeToolTip": "Data\\Models\\Order.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAABIAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T12:50:11.44Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "OderApiController.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\OderApiController.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Controllers\\OderApiController.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\OderApiController.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Controllers\\OderApiController.cs",
-              "ViewState": "AQIAAEkAAAAAAAAAAAAUwJoAAABeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T02:06:38.696Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PaymentController.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\PaymentController.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Controllers\\PaymentController.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Controllers\\PaymentController.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Controllers\\PaymentController.cs",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAmwDgAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T08:47:52.674Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Product\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\Product\\_Layout.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Product\\_Layout.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\Product\\_Layout.cshtml",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABIAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T02:33:05.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\User\\_Layout.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\_Layout.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\User\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T02:33:45.763Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ListOrder.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Order\\ListOrder.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\Order\\ListOrder.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Order\\ListOrder.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\Order\\ListOrder.cshtml",
-              "ViewState": "AQIAACEAAAAAAAAAAAAwwCkAAABxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T02:21:25.556Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\appsettings.json",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\appsettings.json",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-25T08:12:15.245Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Properties\\launchSettings.json",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAiwBAAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-25T08:42:39.198Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Program.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Program.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Program.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAwwFMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T08:12:00.879Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "VnPayService.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Service\\VnPay\\VnPayService.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Service\\VnPay\\VnPayService.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Service\\VnPay\\VnPayService.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Service\\VnPay\\VnPayService.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAiwDQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T08:37:16.809Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IVnPayService.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Service\\IVNPay\\IVnPayService.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Service\\IVNPay\\IVnPayService.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Service\\IVNPay\\IVnPayService.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Service\\IVNPay\\IVnPayService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T08:35:17.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "PaymentResponseModel.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\VNPay\\PaymentResponseModel.cs",
-              "RelativeDocumentMoniker": "Data\\VNPay\\PaymentResponseModel.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\VNPay\\PaymentResponseModel.cs",
-              "RelativeToolTip": "Data\\VNPay\\PaymentResponseModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T08:16:27.255Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Vnpay_Library.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Libraryes\\Vnpay_Library.cs",
-              "RelativeDocumentMoniker": "Shoe_Store_HandleAPI\\Libraryes\\Vnpay_Library.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store_HandleAPI\\Libraryes\\Vnpay_Library.cs",
-              "RelativeToolTip": "Shoe_Store_HandleAPI\\Libraryes\\Vnpay_Library.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T09:16:52.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "PaymentInformationModel.cs",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\VNPay\\PaymentInformationModel.cs",
-              "RelativeDocumentMoniker": "Data\\VNPay\\PaymentInformationModel.cs",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Data\\VNPay\\PaymentInformationModel.cs",
-              "RelativeToolTip": "Data\\VNPay\\PaymentInformationModel.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T08:16:04.127Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ProductDetail.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\ProductDetail.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\User\\ProductDetail.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\ProductDetail.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\User\\ProductDetail.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T08:11:28.104Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "CreateOrder.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Order\\CreateOrder.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\Order\\CreateOrder.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Order\\CreateOrder.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\Order\\CreateOrder.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T08:11:17.016Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ProductList.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\ProductList.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\User\\ProductList.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\User\\ProductList.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\User\\ProductList.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T02:21:19.929Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "ProductList.cshtml",
-              "DocumentMoniker": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Product\\ProductList.cshtml",
-              "RelativeDocumentMoniker": "Shoe_Store\\Views\\Product\\ProductList.cshtml",
-              "ToolTip": "D:\\FPT\\Project\\Shoe_Store_HandleAPI\\Shoe_Store\\Views\\Product\\ProductList.cshtml",
-              "RelativeToolTip": "Shoe_Store\\Views\\Product\\ProductList.cshtml",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAAAHUAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-25T03:18:03.183Z"
             }
           ]
         }

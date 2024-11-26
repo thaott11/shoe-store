@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Thanh toán thành công";
+}
+
+<h2>Thanh toán thành công</h2>
+<p>@ViewBag.Message</p>
+
+@if (ViewBag.Data != null)
+{
+    <h4>Thông tin giao dịch:</h4>
+    <ul>
+        <li>Trạng thái: Thành công</li>
+    </ul>
+}

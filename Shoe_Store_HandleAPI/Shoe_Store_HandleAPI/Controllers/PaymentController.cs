@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shoe_Store_HandleAPI.Service.IVNPay;
-using Microsoft.Extensions.Logging;
+using System;
 
 namespace Shoe_Store_HandleAPI.Controllers
 {
@@ -20,17 +20,13 @@ namespace Shoe_Store_HandleAPI.Controllers
         [HttpPost("CreatePaymentUrl")]
         public IActionResult CreatePaymentUrlVnpay([FromBody] PaymentInformationModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
                 var paymentUrl = _vnPayService.CreatePaymentUrl(model, HttpContext);
                 return Ok(new
                 {
                     PaymentUrl = paymentUrl,
-                    ReceivedData = model  
+                    ReceivedData = model
                 });
             }
             catch (Exception ex)
@@ -69,5 +65,6 @@ namespace Shoe_Store_HandleAPI.Controllers
                 return StatusCode(500, $"Đã xảy ra lỗi: {ex.Message}");
             }
         }
+       
     }
 }
